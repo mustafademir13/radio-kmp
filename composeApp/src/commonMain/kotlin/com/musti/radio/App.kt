@@ -1,6 +1,7 @@
 package com.musti.radio
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,15 +29,16 @@ import androidx.compose.ui.unit.dp
 
 data class Station(
     val name: String,
+    val emoji: String,
     val streamUrl: String,
 )
 
 private val stations = listOf(
-    Station("BBC World Service", "https://stream.live.vc.bbcmedia.co.uk/bbc_world_service"),
-    Station("Virgin Radio UK", "https://radio.virginradio.co.uk/stream"),
-    Station("KEXP 90.3", "https://kexp.streamguys1.com/kexp160.aac"),
-    Station("Power Türk", "https://listen.powerapp.com.tr/powerturk/mpeg/icecast.audio"),
-    Station("Slow Türk", "https://radyo.duhnet.tv/slowturk"),
+    Station("BBC World Service", "🌍", "https://stream.live.vc.bbcmedia.co.uk/bbc_world_service"),
+    Station("Virgin Radio UK", "🎸", "https://radio.virginradio.co.uk/stream"),
+    Station("KEXP 90.3", "🎧", "https://kexp.streamguys1.com/kexp160.aac"),
+    Station("Power Türk", "⚡", "https://listen.powerapp.com.tr/powerturk/mpeg/icecast.audio"),
+    Station("Slow Türk", "🌙", "https://radyo.duhnet.tv/slowturk"),
 )
 
 @Composable
@@ -46,6 +49,11 @@ fun App(player: RadioPlayer) {
         var volume by remember { mutableStateOf(0.8f) }
         var status by remember { mutableStateOf("Hazır") }
 
+        DisposableEffect(player) {
+            player.setStatusListener { status = it }
+            onDispose { player.setStatusListener { } }
+        }
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -53,29 +61,36 @@ fun App(player: RadioPlayer) {
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Text("RadyoNova", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
-            Text("Canlı radyo keyfi", style = MaterialTheme.typography.bodyMedium)
+            Text("Canlı radyo keyfi • modern arayüz", style = MaterialTheme.typography.bodyMedium)
 
             Card(modifier = Modifier.fillMaxWidth()) {
                 Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text("Şu an seçili kanal", style = MaterialTheme.typography.labelMedium)
-                    Text(selectedStation.name, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
-                    Text("Durum: $status", style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        "${selectedStation.emoji} ${selectedStation.name}",
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.SemiBold,
+                    )
 
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Button(onClick = {
-                            if (isPlaying) {
-                                player.stop()
-                                isPlaying = false
-                                status = "Durduruldu"
-                            } else {
-                                player.play(selectedStation.streamUrl)
-                                player.setVolume(volume)
-                                isPlaying = true
-                                status = "Çalıyor"
-                            }
-                        }) {
-                            Text(if (isPlaying) "Durdur" else "Oynat")
+                    Text(
+                        "Durum: $status",
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier
+                            .background(MaterialTheme.colorScheme.secondaryContainer)
+                            .padding(horizontal = 10.dp, vertical = 6.dp),
+                    )
+
+                    Button(onClick = {
+                        if (isPlaying) {
+                            player.stop()
+                            isPlaying = false
+                        } else {
+                            player.play(selectedStation.streamUrl)
+                            player.setVolume(volume)
+                            isPlaying = true
                         }
+                    }) {
+                        Text(if (isPlaying) "Durdur" else "Oynat")
                     }
                 }
             }
@@ -103,16 +118,16 @@ fun App(player: RadioPlayer) {
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
+                            .border(
+                                width = if (selected) 2.dp else 0.dp,
+                                color = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface,
+                            )
                             .clickable {
                                 selectedStation = station
-                                status = if (isPlaying) {
+                                if (isPlaying) {
                                     player.play(station.streamUrl)
-                                    "Çalıyor"
-                                } else {
-                                    "Hazır"
                                 }
                             }
-                            .background(if (selected) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.surface)
                     ) {
                         Row(
                             modifier = Modifier
@@ -121,7 +136,7 @@ fun App(player: RadioPlayer) {
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween,
                         ) {
-                            Text(station.name, fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal)
+                            Text("${station.emoji} ${station.name}", fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal)
                             if (selected) Text("Seçili")
                         }
                     }
