@@ -280,12 +280,6 @@ fun App(
                 }
             }
 
-            AdBanner(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 8.dp)
-            )
-
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -309,6 +303,12 @@ fun App(
                     }
                 }
             }
+
+            AdBanner(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp)
+            )
         }
     }
 }
