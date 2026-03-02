@@ -1,10 +1,8 @@
 package com.musti.radio
 
 import android.content.Context
-import android.content.Intent
 import android.os.Handler
 import android.os.Looper
-import androidx.core.content.ContextCompat
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
@@ -50,7 +48,6 @@ class AndroidRadioPlayer(private val context: Context) : RadioPlayer {
     override fun play(url: String) {
         lastUrl = url
         statusListener("Bağlanıyor…")
-        ContextCompat.startForegroundService(appContext, Intent(appContext, RadioPlaybackService::class.java))
         player.setMediaItem(MediaItem.fromUri(url))
         player.prepare()
         player.playWhenReady = true
@@ -59,7 +56,6 @@ class AndroidRadioPlayer(private val context: Context) : RadioPlayer {
     override fun stop() {
         player.stop()
         statusListener("Durduruldu")
-        appContext.stopService(Intent(appContext, RadioPlaybackService::class.java))
     }
 
     override fun setVolume(volume: Float) {
