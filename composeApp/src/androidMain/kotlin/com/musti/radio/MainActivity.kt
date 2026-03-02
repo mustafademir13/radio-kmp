@@ -9,6 +9,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val player = AndroidRadioPlayer(this)
         val prefs = AppPrefs(this)
+        val stations = StationLoader.load(this)
 
         setContent {
             App(
@@ -17,6 +18,7 @@ class MainActivity : ComponentActivity() {
                 initialFavorites = prefs.getFavorites(),
                 onStationChanged = { prefs.setLastStationId(it) },
                 onFavoritesChanged = { prefs.setFavorites(it) },
+                stations = stations,
             )
         }
     }

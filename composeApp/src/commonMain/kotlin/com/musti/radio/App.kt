@@ -58,7 +58,7 @@ enum class BottomTab(val label: String) {
     Recent("Recent"),
 }
 
-val allStations = listOf(
+val defaultStations = listOf(
     Station("bbc_world", "BBC World Service", "🌍", "https://stream.live.vc.bbcmedia.co.uk/bbc_world_service"),
     Station("virgin_uk", "Virgin Radio UK", "🎸", "https://radio.virginradio.co.uk/stream"),
     Station("kexp", "KEXP 90.3", "🎧", "https://kexp.streamguys1.com/kexp160.aac"),
@@ -81,10 +81,11 @@ fun App(
     initialFavorites: Set<String> = emptySet(),
     onStationChanged: (String) -> Unit = {},
     onFavoritesChanged: (Set<String>) -> Unit = {},
+    stations: List<Station> = defaultStations,
 ) {
     var isPlaying by remember { mutableStateOf(false) }
     var selectedStation by remember {
-        mutableStateOf(allStations.firstOrNull { it.id == initialStationId } ?: allStations.first())
+        mutableStateOf(stations.firstOrNull { it.id == initialStationId } ?: stations.first())
     }
     var favorites by remember { mutableStateOf(initialFavorites) }
     val recent = remember { mutableStateListOf<String>() }
@@ -99,9 +100,9 @@ fun App(
     }
 
     val baseList = when (selectedTab) {
-        BottomTab.Browse -> allStations
-        BottomTab.Favorites -> allStations.filter { favorites.contains(it.id) }
-        BottomTab.Recent -> allStations.filter { recent.contains(it.id) }
+        BottomTab.Browse -> stations
+        BottomTab.Favorites -> stations.filter { favorites.contains(it.id) }
+        BottomTab.Recent -> stations.filter { recent.contains(it.id) }
     }
     val filteredStations = baseList.filter { it.name.contains(query, ignoreCase = true) }
 

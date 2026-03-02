@@ -1,0 +1,7 @@
+[
+  {"id":"bbc_world","name":"BBC World Service","emoji":"🌍","streamUrl":"https://stream.live.vc.bbcmedia.co.uk/bbc_world_service"},
+  {"id":"virgin_uk","name":"Virgin Radio UK","emoji":"🎸","streamUrl":"https://radio.virginradio.co.uk/stream"},
+  {"id":"kexp","name":"KEXP 90.3","emoji":"🎧","streamUrl":"https://kexp.streamguys1.com/kexp160.aac"},
+  {"id":"powerturk","name":"Power Türk","emoji":"⚡","streamUrl":"https://listen.powerapp.com.tr/powerturk/mpeg/icecast.audio"},
+  {"id":"slowturk","name":"Slow Türk","emoji":"🌙","streamUrl":"https://radyo.duhnet.tv/slowturk"}
+]

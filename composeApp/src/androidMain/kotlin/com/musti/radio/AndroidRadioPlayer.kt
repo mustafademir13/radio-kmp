@@ -1,33 +1,55 @@
 package com.musti.radio
 
 import android.content.Context
+import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
-import androidx.media3.exoplayer.ExoPlayer
 
-class AndroidRadioPlayer(context: Context) : RadioPlayer {
+class AndroidRadioPlayer(private val context: Context) : RadioPlayer {
+    private val appContext = context.applicationContext
+    private val player = RadioPlayerHolder.get(appContext)
+    private val mainHandler = Handler(Looper.getMainLooper())
+
     private var statusListener: (String) -> Unit = {}
+    private var lastUrl: String? = null
+    private var retryCount = 0
+    private val maxRetry = 3
 
-    private val player = ExoPlayer.Builder(context).build().apply {
-        addListener(object : Player.Listener {
+    init {
+        player.addListener(object : Player.Listener {
             override fun onPlaybackStateChanged(playbackState: Int) {
                 when (playbackState) {
                     Player.STATE_BUFFERING -> statusListener("Bağlanıyor…")
-                    Player.STATE_READY -> statusListener(if (playWhenReady) "Çalıyor" else "Hazır")
+                    Player.STATE_READY -> {
+                        retryCount = 0
+                        statusListener(if (player.playWhenReady) "Çalıyor" else "Hazır")
+                    }
                     Player.STATE_ENDED -> statusListener("Yayın sona erdi")
                     Player.STATE_IDLE -> statusListener("Hazır")
                 }
             }
 
             override fun onPlayerError(error: PlaybackException) {
-                statusListener("Hata: yayın açılamadı")
+                if (retryCount < maxRetry && !lastUrl.isNullOrBlank()) {
+                    retryCount++
+                    statusListener("Bağlantı koptu, tekrar deneniyor ($retryCount/$maxRetry)…")
+                    mainHandler.postDelayed({
+                        lastUrl?.let { play(it) }
+                    }, 1500L * retryCount)
+                } else {
+                    statusListener("Hata: yayın açılamadı")
+                }
             }
         })
     }
 
     override fun play(url: String) {
+        lastUrl = url
         statusListener("Bağlanıyor…")
+        appContext.startService(Intent(appContext, RadioPlaybackService::class.java))
         player.setMediaItem(MediaItem.fromUri(url))
         player.prepare()
         player.playWhenReady = true
@@ -36,6 +58,7 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
     override fun stop() {
         player.stop()
         statusListener("Durduruldu")
+        appContext.stopService(Intent(appContext, RadioPlaybackService::class.java))
     }
 
     override fun setVolume(volume: Float) {
