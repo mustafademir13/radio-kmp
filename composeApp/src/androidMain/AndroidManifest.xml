@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application android:label="Mustafa Radio" android:theme="@style/Theme.MustafaRadio">
+    <application android:label="RadyoNova" android:theme="@style/Theme.MustafaRadio">
         <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
