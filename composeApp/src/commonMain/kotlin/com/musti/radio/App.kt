@@ -129,20 +129,11 @@ fun App(
         Column(modifier = Modifier.fillMaxSize().statusBarsPadding()) {
             LazyColumn(
                 modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 item {
-                    Text("RadyoNova", color = TextMain, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 4.dp)
+                    Text("RadyoNova", color = TextMain, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 2.dp)
                     .navigationBarsPadding())
-                    Box(
-                        modifier = Modifier
-                            .padding(top = 6.dp)
-                            .clip(RoundedCornerShape(20.dp))
-                            .background(Color(0xFF1B2548))
-                            .padding(horizontal = 12.dp, vertical = 6.dp),
-                    ) {
-                        Text("LIVE • NEON MODE", color = NeonCyan, style = MaterialTheme.typography.labelLarge)
-                    }
                 }
 
                 item {
@@ -267,10 +258,10 @@ fun App(
 
                             Box(
                                 modifier = Modifier
-                                    .height(30.dp)
+                                    .height(38.dp)
                                     .clip(RoundedCornerShape(14.dp))
                                     .background(if (selected) NeonPurple else Color(0xFF2D3756))
-                                    .padding(horizontal = 10.dp, vertical = 6.dp),
+                                    .padding(horizontal = 14.dp, vertical = 9.dp),
                             ) {
                                 Text(if (selected) "Seçili" else "Aç", color = Color.White)
                             }
@@ -286,7 +277,7 @@ fun App(
                     .background(Color(0xFF171E38))
                     .border(1.dp, Color(0xFF303A60), RoundedCornerShape(18.dp))
                     .navigationBarsPadding()
-                    .padding(8.dp),
+                    .padding(horizontal = 10.dp, vertical = 10.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 BottomTab.entries.forEach { tab ->
@@ -296,7 +287,7 @@ fun App(
                             .clip(RoundedCornerShape(12.dp))
                             .background(if (selectedTab == tab) NeonPurple else Color.Transparent)
                             .clickable { selectedTab = tab }
-                            .padding(vertical = 10.dp),
+                            .padding(vertical = 14.dp),
                         contentAlignment = Alignment.Center,
                     ) {
                         Text(tab.label, color = if (selectedTab == tab) Color.White else TextMuted)
@@ -307,7 +298,7 @@ fun App(
             AdBanner(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 4.dp)
+                    .padding(top = 2.dp)
                     .navigationBarsPadding()
             )
         }
