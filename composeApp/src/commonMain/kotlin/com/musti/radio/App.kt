@@ -237,7 +237,9 @@ fun App(
                                 recent.remove(station.id)
                                 recent.add(0, station.id)
                                 if (recent.size > 10) recent.removeLast()
-                                if (isPlaying) player.play(station.streamUrl)
+                                player.play(station.streamUrl)
+                                player.setVolume(volume)
+                                isPlaying = true
                             },
                     ) {
                         Row(
