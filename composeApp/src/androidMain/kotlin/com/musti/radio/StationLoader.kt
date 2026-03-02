@@ -17,6 +17,9 @@ object StationLoader {
                             name = o.getString("name"),
                             emoji = o.optString("emoji", "🎵"),
                             streamUrl = o.getString("streamUrl"),
+                            category = o.optString("category", "Genel"),
+                            region = o.optString("region", "Türkiye"),
+                            bitrateKbps = o.optInt("bitrateKbps", 128),
                         )
                     )
                 }

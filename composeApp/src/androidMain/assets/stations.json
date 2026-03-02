@@ -1,602 +1,902 @@
 [
   {
-    "id": "tr_top_001",
-    "name": "Arabesk FM",
-    "emoji": "📻",
-    "streamUrl": "http://yayin.arabeskfm.biz:8042/"
+    "id": "tr_001",
+    "name": "Slow Turk",
+    "emoji": "🌙",
+    "streamUrl": "https://radyo.duhnet.tv/ak_dtvh_slowturk",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
   },
   {
-    "id": "tr_top_002",
-    "name": "DAMAR TURK FM",
-    "emoji": "📻",
-    "streamUrl": "https://live.radyositesihazir.com:10997/"
-  },
-  {
-    "id": "tr_top_003",
+    "id": "tr_002",
     "name": "Radyo 7",
     "emoji": "📻",
-    "streamUrl": "http://46.20.3.250/;stream"
+    "streamUrl": "http://46.20.3.250/;stream",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
   },
   {
-    "id": "tr_top_004",
-    "name": "Türkülerle Türkiye",
-    "emoji": "📻",
-    "streamUrl": "http://37.247.98.8/stream/22/;"
-  },
-  {
-    "id": "tr_top_005",
-    "name": "Radyo Şiran",
-    "emoji": "📻",
-    "streamUrl": "https://live.radyositesihazir.com/8078/stream"
-  },
-  {
-    "id": "tr_top_006",
-    "name": "Power POP",
-    "emoji": "📻",
-    "streamUrl": "https://listen.powerapp.com.tr/powerpop/128/chunks.m3u8"
-  },
-  {
-    "id": "tr_top_007",
-    "name": "KRAL TÜRK FM",
-    "emoji": "📻",
-    "streamUrl": "https://live.radyositesihazir.com/8032/stream"
-  },
-  {
-    "id": "tr_top_008",
-    "name": "Alem FM",
-    "emoji": "📻",
-    "streamUrl": "http://turkmedya.radyotvonline.com/turkmedya/alemfm.stream/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_009",
-    "name": "Radio 5 Turkey",
-    "emoji": "📻",
-    "streamUrl": "http://radyo.yayin.com.tr:4108/stream"
-  },
-  {
-    "id": "tr_top_010",
-    "name": "Ankara Havalari",
-    "emoji": "📻",
-    "streamUrl": "http://37.247.98.8/stream/30/;"
-  },
-  {
-    "id": "tr_top_011",
-    "name": "ALTIN SARKILAR",
-    "emoji": "📻",
-    "streamUrl": "http://37.247.98.8/stream/25/;"
-  },
-  {
-    "id": "tr_top_012",
-    "name": "Baba Radyo",
-    "emoji": "📻",
-    "streamUrl": "http://46.20.7.116/"
-  },
-  {
-    "id": "tr_top_013",
-    "name": "a HABER",
-    "emoji": "📻",
-    "streamUrl": "https://trkvz-radyolar.ercdn.net/ahaberradyo/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_014",
-    "name": "Süper FM",
-    "emoji": "📻",
-    "streamUrl": "http://29023.live.streamtheworld.com:3690/SUPER_FMAAC_SC"
-  },
-  {
-    "id": "tr_top_015",
-    "name": "Radyo Fenomen",
-    "emoji": "📻",
-    "streamUrl": "https://live.radyofenomen.com/fenomen/128/icecast.audio"
-  },
-  {
-    "id": "tr_top_016",
-    "name": "Radyo Vatan Türkü",
-    "emoji": "📻",
-    "streamUrl": "http://95.0.173.195:9000/turku"
-  },
-  {
-    "id": "tr_top_017",
-    "name": "Radyo Seymen",
-    "emoji": "📻",
-    "streamUrl": "https://yayin.radyoseymen.com.tr:1070/stream"
-  },
-  {
-    "id": "tr_top_018",
-    "name": "Super Fm",
-    "emoji": "📻",
-    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/SUPER_FM_SC"
-  },
-  {
-    "id": "tr_top_019",
-    "name": "DamarTurk FM",
-    "emoji": "📻",
-    "streamUrl": "https://live.radyositesihazir.com:10997/stream?type=http&nocache=99881"
-  },
-  {
-    "id": "tr_top_020",
-    "name": "Radyo Voyage",
-    "emoji": "📻",
-    "streamUrl": "http://voyagewmp.radyotvonline.com/;stream.mp3"
-  },
-  {
-    "id": "tr_top_021",
-    "name": "90lar turkey",
-    "emoji": "📻",
-    "streamUrl": "http://37.247.98.8/stream/166/"
-  },
-  {
-    "id": "tr_top_022",
-    "name": "Slow Turk",
-    "emoji": "📻",
-    "streamUrl": "https://radyo.duhnet.tv/ak_dtvh_slowturk"
-  },
-  {
-    "id": "tr_top_023",
-    "name": "Pal station",
-    "emoji": "📻",
-    "streamUrl": "http://shoutcast.radyogrup.com:1020/"
-  },
-  {
-    "id": "tr_top_024",
-    "name": "pop 90 turkey",
-    "emoji": "📻",
-    "streamUrl": "http://23623.live.streamtheworld.com:3690/POP90AAC_SC"
-  },
-  {
-    "id": "tr_top_025",
-    "name": "RS FM",
-    "emoji": "📻",
-    "streamUrl": "http://nfw.video.ria.ru/flv/audio.aspx?ID=99244423&type=mp3"
-  },
-  {
-    "id": "tr_top_026",
+    "id": "tr_003",
     "name": "KRAL FM",
     "emoji": "📻",
-    "streamUrl": "https://dygedge2.radyotvonline.net/kralfm/playlist.m3u8?listenerid=29d0a6a85b59cea2ca801b70d2a3ebaf&awparams=companionAds%3Atrue"
+    "streamUrl": "https://dygedge2.radyotvonline.net/kralfm/playlist.m3u8?listenerid=29d0a6a85b59cea2ca801b70d2a3ebaf&awparams=companionAds%3Atrue",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
   },
   {
-    "id": "tr_top_027",
-    "name": "SUPER FM 2 TURKEY",
-    "emoji": "📻",
-    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/SUPER2_SC?/"
-  },
-  {
-    "id": "tr_top_028",
-    "name": "dinamo.fm deep",
-    "emoji": "📻",
-    "streamUrl": "http://channels.dinamo.fm/deep-mp3"
-  },
-  {
-    "id": "tr_top_029",
-    "name": "JOY TÜRK TURKEY",
-    "emoji": "📻",
-    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/JOY_TURK_SC?/"
-  },
-  {
-    "id": "tr_top_030",
-    "name": "Metro fm turkey",
-    "emoji": "📻",
-    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/METRO_FM_SC?"
-  },
-  {
-    "id": "tr_top_031",
-    "name": "TRT NAĞME",
-    "emoji": "📻",
-    "streamUrl": "https://tv-trtmuzik.medya.trt.com.tr/master_720.m3u8"
-  },
-  {
-    "id": "tr_top_032",
-    "name": "TRT Türkü",
-    "emoji": "📻",
-    "streamUrl": "https://rd-trtturku.medya.trt.com.tr/master_128.m3u8"
-  },
-  {
-    "id": "tr_top_033",
-    "name": "Habertürk Radyo",
-    "emoji": "📻",
-    "streamUrl": "https://haberturkradyo.radyotvonline.net/haberturkradyo"
-  },
-  {
-    "id": "tr_top_034",
-    "name": "POWER TÜRK FM",
-    "emoji": "📻",
-    "streamUrl": "https://live.powerapp.com.tr/powerturk/abr/powerturk/128/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_035",
-    "name": "Diyanet Radyo",
-    "emoji": "📻",
-    "streamUrl": "https://eustr73.mediatriple.net/videoonlylive/mtikoimxnztxlive/broadcast_5e3c1171d7d2a.smil/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_036",
-    "name": "TRT Radyo Haber",
-    "emoji": "📻",
-    "streamUrl": "https://radio-trtradyohaber.live.trt.com.tr/master.m3u8"
-  },
-  {
-    "id": "tr_top_037",
-    "name": "POWER TÜRK DANS TÜRKİYE",
-    "emoji": "📻",
-    "streamUrl": "https://listen.powerapp.com.tr/powerturkdans/abr/powerturkdans/128/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_038",
-    "name": "Pal Fm",
-    "emoji": "📻",
-    "streamUrl": "https://ssl4.radyotvonline.com/radyohome/palfmhome.stream/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_039",
-    "name": "Ahaber",
-    "emoji": "📻",
-    "streamUrl": "http://trkvz-radyolar.ercdn.net/ahaberradyo/chunklist.m3u8"
-  },
-  {
-    "id": "tr_top_040",
-    "name": "POWER XL TURKEY",
-    "emoji": "📻",
-    "streamUrl": "https://listen.powerapp.com.tr/powerextralounge/abr/powerextralounge/96/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_041",
-    "name": "Radyo 45lik yeni",
-    "emoji": "📻",
-    "streamUrl": "https://stream.radyo45lik.com:4545/"
-  },
-  {
-    "id": "tr_top_042",
-    "name": "KRAL POP ALTERNATİF 2",
-    "emoji": "📻",
-    "streamUrl": "https://ssldyg.radyotvonline.com/smil/smil:kralpop.smil/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_043",
-    "name": "TRT3",
-    "emoji": "📻",
-    "streamUrl": "http://rd-trtradyo3.medya.trt.com.tr/master.m3u8"
-  },
-  {
-    "id": "tr_top_044",
-    "name": "TRT FM",
-    "emoji": "📻",
-    "streamUrl": "https://trt.radyotvonline.net/trtfm"
-  },
-  {
-    "id": "tr_top_045",
-    "name": "POWERTÜRK FM TURKEY 2",
-    "emoji": "📻",
-    "streamUrl": "https://live.powerapp.com.tr/powerturk/abr/powerturk/128/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_046",
-    "name": "Power FM Türkiye",
-    "emoji": "📻",
-    "streamUrl": "https://listen.powerapp.com.tr/powerfm/256/chunks.m3u8"
-  },
-  {
-    "id": "tr_top_047",
-    "name": "dinamo.fm caffe",
-    "emoji": "📻",
-    "streamUrl": "http://channels.dinamo.fm/caffe-mp3"
-  },
-  {
-    "id": "tr_top_048",
-    "name": "powerturk",
-    "emoji": "📻",
-    "streamUrl": "https://live.powerapp.com.tr/powerturk/abr/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_049",
-    "name": "dinamo.fm discotheque",
-    "emoji": "📻",
-    "streamUrl": "http://channels.dinamo.fm/discotheque-mp3"
-  },
-  {
-    "id": "tr_top_050",
-    "name": "KRAL POP",
-    "emoji": "📻",
-    "streamUrl": "https://dygedge2.radyotvonline.net/kralfm/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_051",
-    "name": "Cnn Türk Radyo",
-    "emoji": "📻",
-    "streamUrl": "https://moondigitaledge2.radyotvonline.net/cnnturk/playlist.m3u8?listeningSessionID=669e367246737fe5_6249184_Zq120UIn__0000001w2Bs&downloadSessionID=0"
-  },
-  {
-    "id": "tr_top_052",
-    "name": "Power love",
-    "emoji": "📻",
-    "streamUrl": "https://listen.powerapp.com.tr/powerlove/abr/powerlove/128/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_053",
-    "name": "Powerturk R&B Hip Hop",
-    "emoji": "📻",
-    "streamUrl": "https://listen.powerapp.com.tr/powerrbhiphop/abr/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_054",
-    "name": "TRT Radyo 1",
-    "emoji": "📻",
-    "streamUrl": "https://trt.radyotvonline.net/trt1"
-  },
-  {
-    "id": "tr_top_055",
-    "name": "PowerTürk Dans",
-    "emoji": "📻",
-    "streamUrl": "https://listen.powerapp.com.tr/powerturkdans/abr/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_056",
-    "name": "Radyo Turkuvaz",
-    "emoji": "📻",
-    "streamUrl": "https://trkvz-radyolar.ercdn.net/radyoturkuvaz/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_057",
-    "name": "NTV Radyo",
-    "emoji": "📻",
-    "streamUrl": "http://ntvrdwmp.radyotvonline.com/"
-  },
-  {
-    "id": "tr_top_058",
-    "name": "PowerTürk Akustik",
-    "emoji": "📻",
-    "streamUrl": "https://listen.powerapp.com.tr/powerturkakustik/abr/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_059",
-    "name": "Radyo D",
-    "emoji": "📻",
-    "streamUrl": "https://moondigitaledge2.radyotvonline.net/radyod/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_060",
-    "name": "Power Dance",
-    "emoji": "📻",
-    "streamUrl": "https://listen.powerapp.com.tr/powerdance/mpeg/icecast.audio"
-  },
-  {
-    "id": "tr_top_061",
-    "name": "Park Fm",
-    "emoji": "📻",
-    "streamUrl": "http://yayin.netradyom.com:8050/PARKFM/"
-  },
-  {
-    "id": "tr_top_062",
-    "name": "FENOMEN KARISIK",
-    "emoji": "📻",
-    "streamUrl": "https://live.radyofenomen.com/fenomenkarisik/abr/fenomenkarisik/128/chunks.m3u8"
-  },
-  {
-    "id": "tr_top_063",
-    "name": "TRT Memleketim FM",
-    "emoji": "📻",
-    "streamUrl": "https://radio-trtmemleketimfm.medya.trt.com.tr/master.m3u8"
-  },
-  {
-    "id": "tr_top_064",
-    "name": "TRT Diyarbakır",
-    "emoji": "📻",
-    "streamUrl": "https://radio-trtgap.medya.trt.com.tr/master.m3u8"
-  },
-  {
-    "id": "tr_top_065",
-    "name": "Trt Spor",
-    "emoji": "📻",
-    "streamUrl": "https://rd-trtradyo1.medya.trt.com.tr/master_128.m3u8"
-  },
-  {
-    "id": "tr_top_066",
-    "name": "Radyo Ekin",
-    "emoji": "📻",
-    "streamUrl": "http://yayin.turkhosted.com:6006/"
-  },
-  {
-    "id": "tr_top_067",
-    "name": "TRT Trabzon",
-    "emoji": "📻",
-    "streamUrl": "https://radio-trttrabzon.medya.trt.com.tr/master.m3u8"
-  },
-  {
-    "id": "tr_top_068",
-    "name": "Radyo Duygusal",
-    "emoji": "📻",
-    "streamUrl": "https://radyoduygusal.kesintisizyayin.com:9596/;*.nsv"
-  },
-  {
-    "id": "tr_top_069",
-    "name": "TRT TSR",
-    "emoji": "📻",
-    "streamUrl": "https://radio-trttsr.medya.trt.com.tr/master.m3u8"
-  },
-  {
-    "id": "tr_top_070",
-    "name": "lokum fm",
-    "emoji": "📻",
-    "streamUrl": "http://37.247.98.9/stream/493/?/;stream.mp3"
-  },
-  {
-    "id": "tr_top_071",
-    "name": "JoyTürk Akustik",
-    "emoji": "📻",
-    "streamUrl": "http://playerservices.streamtheworld.com/api/livestream-redirect/JOYTURK_AKUSTIK128AAC.aac"
-  },
-  {
-    "id": "tr_top_072",
-    "name": "Power Gold TR",
-    "emoji": "📻",
-    "streamUrl": "https://live.powerapp.com.tr/powergold/abr/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_073",
-    "name": "power plus",
-    "emoji": "📻",
-    "streamUrl": "https://listen.powerapp.com.tr/powerplus/abr/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_074",
-    "name": "JoyTürk Rock",
-    "emoji": "📻",
-    "streamUrl": "http://23613.live.streamtheworld.com/JOYTURK_ROCK128AAC.aac"
-  },
-  {
-    "id": "tr_top_075",
-    "name": "Halk Radyo",
-    "emoji": "📻",
-    "streamUrl": "https://anadolu.liderhost.com.tr:10876/;"
-  },
-  {
-    "id": "tr_top_076",
-    "name": "dinamo.fm locodyno",
-    "emoji": "📻",
-    "streamUrl": "http://channels.dinamo.fm/locodyno-mp3"
-  },
-  {
-    "id": "tr_top_077",
-    "name": "Vav Radyo",
-    "emoji": "📻",
-    "streamUrl": "https://trkvz-radyolar.ercdn.net/radyovav/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_078",
-    "name": "Havin FM",
-    "emoji": "📻",
-    "streamUrl": "http://yayin6.radyohizmeti.com:7050/;stream.mp3"
-  },
-  {
-    "id": "tr_top_079",
-    "name": "Akra FM",
-    "emoji": "📻",
-    "streamUrl": "https://d3r5bwwuab2v60.cloudfront.net/akracanli2/_definst_/livestream_aac/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_080",
-    "name": "Radyo ILEF Ankara",
-    "emoji": "📻",
-    "streamUrl": "http://radyo.cc.ankara.edu.tr:8089/;"
-  },
-  {
-    "id": "tr_top_081",
-    "name": "FENOMEN POP",
-    "emoji": "📻",
-    "streamUrl": "https://live.radyofenomen.com/fenomenpop/abr/fenomenpop/128/chunks.m3u8"
-  },
-  {
-    "id": "tr_top_082",
-    "name": "FENOMEN DANS",
-    "emoji": "📻",
-    "streamUrl": "https://live.radyofenomen.com/fenomendans/abr/fenomendans/128/chunks.m3u8"
-  },
-  {
-    "id": "tr_top_083",
-    "name": "Radyo A (Radyo Anadolu Üniversitesi)",
-    "emoji": "📻",
-    "streamUrl": "http://canli.radyoa.anadolu.edu.tr:44445/Radyo_A_MP3"
-  },
-  {
-    "id": "tr_top_084",
-    "name": "Avrasya Türk Radyo",
-    "emoji": "📻",
-    "streamUrl": "https://sslyayin.netyayin.net:10909/"
-  },
-  {
-    "id": "tr_top_085",
-    "name": "Diyanet Kur'an Radyo",
-    "emoji": "📻",
-    "streamUrl": "https://eustr73.mediatriple.net/videoonlylive/mtikoimxnztxlive/broadcast_5e3c14192aa92.smil/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_086",
-    "name": "Radio Antalya",
-    "emoji": "📻",
-    "streamUrl": "https://my.radiolize.com/radio/8000/radio.mp3"
-  },
-  {
-    "id": "tr_top_087",
-    "name": "Radyo Viva",
-    "emoji": "📻",
-    "streamUrl": "https://moondigitaledge.radyotvonline.net/radyoviva/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_088",
-    "name": "Radyo Fenomen Clubbin",
-    "emoji": "📻",
-    "streamUrl": "https://live.radyofenomen.com/fenomenclubbin/128/icecast.audio"
-  },
-  {
-    "id": "tr_top_089",
-    "name": "Erzincan Cem Radyo",
-    "emoji": "📻",
-    "streamUrl": "https://erzincan.80.yayin.com.tr/stream"
-  },
-  {
-    "id": "tr_top_090",
-    "name": "Turkuvaz Anadolu",
-    "emoji": "📻",
-    "streamUrl": "http://trkvz-radyolar.ercdn.net/turkuvazanadolu/Playlist.m3u8"
-  },
-  {
-    "id": "tr_top_091",
-    "name": "Borusan Klasik",
-    "emoji": "📻",
-    "streamUrl": "http://27783.live.streamtheworld.com/BORUSAN_KLASIKAAC_SC"
-  },
-  {
-    "id": "tr_top_092",
-    "name": "Radio 44",
-    "emoji": "📻",
-    "streamUrl": "https://radyo44.80.yayin.com.tr/stream"
-  },
-  {
-    "id": "tr_top_093",
-    "name": "PAL Nostalji",
-    "emoji": "📻",
-    "streamUrl": "https://moondigitaledge.radyotvonline.net/palnostalji/playlist.m3u8"
-  },
-  {
-    "id": "tr_top_094",
-    "name": "BAYRAM FM TURKEY",
-    "emoji": "📻",
-    "streamUrl": "https://sslyayin.netyayin.net/3442/stream"
-  },
-  {
-    "id": "tr_top_095",
-    "name": "Pir Yolu",
-    "emoji": "📻",
-    "streamUrl": "http://radyopiryolu.canliyayinda.com:8165/"
+    "id": "tr_004",
+    "name": "Power POP",
+    "emoji": "🎸",
+    "streamUrl": "https://listen.powerapp.com.tr/powerpop/128/chunks.m3u8",
+    "category": "00S",
+    "region": "Türkiye",
+    "bitrateKbps": 128
   },
   {
-    "id": "tr_top_096",
-    "name": "EGE HAVALARI TURKEY",
+    "id": "tr_005",
+    "name": "DAMAR TURK FM",
     "emoji": "📻",
-    "streamUrl": "https://moondigitalmaster.radyotvonline.net/egehavalari/playlist.m3u8"
+    "streamUrl": "https://live.radyositesihazir.com:10997/",
+    "category": "Genel",
+    "region": "istanbul bagcılar",
+    "bitrateKbps": 192
   },
   {
-    "id": "tr_top_097",
+    "id": "tr_006",
     "name": "Kafa Radyo",
     "emoji": "📻",
-    "streamUrl": "https://moondigitalmaster.radyotvonline.net/kafaradyo/playlist.m3u8"
+    "streamUrl": "https://moondigitalmaster.radyotvonline.net/kafaradyo/playlist.m3u8",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 63
   },
   {
-    "id": "tr_top_098",
-    "name": "EFSANE 4LÜ TURKEY",
+    "id": "tr_007",
+    "name": "Super Fm",
+    "emoji": "🎤",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/SUPER_FM_SC",
+    "category": "Pop",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_008",
+    "name": "Arabesk FM",
+    "emoji": "🎶",
+    "streamUrl": "http://yayin.arabeskfm.biz:8042/",
+    "category": "Müzik",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_009",
+    "name": "90lar turkey",
     "emoji": "📻",
-    "streamUrl": "https://moondigitalmaster.radyotvonline.net/efsane4lu/playlist.m3u8"
+    "streamUrl": "http://37.247.98.8/stream/166/",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
   },
   {
-    "id": "tr_top_099",
+    "id": "tr_010",
+    "name": "Türkülerle Türkiye",
+    "emoji": "📻",
+    "streamUrl": "http://37.247.98.8/stream/22/;",
+    "category": "Türkü",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_011",
+    "name": "Radyo 45lik yeni",
+    "emoji": "📻",
+    "streamUrl": "https://stream.radyo45lik.com:4545/",
+    "category": "70S",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_012",
+    "name": "KRAL POP ALTERNATİF 2",
+    "emoji": "🎤",
+    "streamUrl": "https://ssldyg.radyotvonline.com/smil/smil:kralpop.smil/playlist.m3u8",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_013",
+    "name": "Süper FM",
+    "emoji": "🎤",
+    "streamUrl": "http://29023.live.streamtheworld.com:3690/SUPER_FMAAC_SC",
+    "category": "Pop",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_014",
+    "name": "POWER TÜRK FM",
+    "emoji": "📻",
+    "streamUrl": "https://live.powerapp.com.tr/powerturk/abr/powerturk/128/playlist.m3u8",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 149
+  },
+  {
+    "id": "tr_015",
+    "name": "Radyo Seymen",
+    "emoji": "📻",
+    "streamUrl": "https://yayin.radyoseymen.com.tr:1070/stream",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_016",
+    "name": "KRAL TÜRK FM",
+    "emoji": "📻",
+    "streamUrl": "https://live.radyositesihazir.com/8032/stream",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_017",
+    "name": "JOY TÜRK TURKEY",
+    "emoji": "📻",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/JOY_TURK_SC?/",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_018",
+    "name": "Alem FM",
+    "emoji": "📻",
+    "streamUrl": "http://turkmedya.radyotvonline.com/turkmedya/alemfm.stream/playlist.m3u8",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_019",
+    "name": "Ankara Havalari",
+    "emoji": "📻",
+    "streamUrl": "http://37.247.98.8/stream/30/;",
+    "category": "Folk",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_020",
+    "name": "Power FM Türkiye",
+    "emoji": "📻",
+    "streamUrl": "https://listen.powerapp.com.tr/powerfm/256/chunks.m3u8",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_021",
+    "name": "Baba Radyo",
+    "emoji": "📻",
+    "streamUrl": "http://46.20.7.116/",
+    "category": "Folk",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_022",
+    "name": "Radyo Turkuvaz",
+    "emoji": "📻",
+    "streamUrl": "https://trkvz-radyolar.ercdn.net/radyoturkuvaz/playlist.m3u8",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_023",
+    "name": "TRT Türkü",
+    "emoji": "📻",
+    "streamUrl": "https://rd-trtturku.medya.trt.com.tr/master_128.m3u8",
+    "category": "Genel",
+    "region": "Ankara",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_024",
+    "name": "Radyo Alaturka",
+    "emoji": "📻",
+    "streamUrl": "https://yayin.jumboserver.net:9100/stream",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_025",
+    "name": "DamarTurk FM",
+    "emoji": "📻",
+    "streamUrl": "https://live.radyositesihazir.com:10997/stream?type=http&nocache=99881",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 192
+  },
+  {
+    "id": "tr_026",
+    "name": "TRT3",
+    "emoji": "🎤",
+    "streamUrl": "http://rd-trtradyo3.medya.trt.com.tr/master.m3u8",
+    "category": "Classical",
+    "region": "Türkiye",
+    "bitrateKbps": 140
+  },
+  {
+    "id": "tr_027",
+    "name": "102.1 Arabeskin Merkezi Fm",
+    "emoji": "🎤",
+    "streamUrl": "http://canli.arabeskinmerkezi.com:9180/stream",
+    "category": "Arabesk",
+    "region": "Istanbul",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_028",
+    "name": "Radyo Fenomen",
+    "emoji": "📻",
+    "streamUrl": "https://live.radyofenomen.com/fenomen/128/icecast.audio",
+    "category": "Turkey",
+    "region": "Türkiye",
+    "bitrateKbps": 56
+  },
+  {
+    "id": "tr_029",
+    "name": "Karadeniz FM",
+    "emoji": "📻",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/karadenizfm/playlist.m3u8",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_030",
+    "name": "ALTIN SARKILAR",
+    "emoji": "📻",
+    "streamUrl": "http://37.247.98.8/stream/25/;",
+    "category": "Golden Oldies",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_031",
+    "name": "pop 90 turkey",
+    "emoji": "🎤",
+    "streamUrl": "http://23623.live.streamtheworld.com:3690/POP90AAC_SC",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_032",
+    "name": "Akra FM",
+    "emoji": "📻",
+    "streamUrl": "https://d3r5bwwuab2v60.cloudfront.net/akracanli2/_definst_/livestream_aac/playlist.m3u8",
+    "category": "Islamic",
+    "region": "Istanbul",
+    "bitrateKbps": 48
+  },
+  {
+    "id": "tr_033",
+    "name": "Habertürk Radyo",
+    "emoji": "📰",
+    "streamUrl": "https://haberturkradyo.radyotvonline.net/haberturkradyo",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_034",
+    "name": "a HABER",
+    "emoji": "📰",
+    "streamUrl": "https://trkvz-radyolar.ercdn.net/ahaberradyo/playlist.m3u8",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_035",
+    "name": "Aşk FM",
+    "emoji": "🎤",
+    "streamUrl": "http://yayin.asymedya.com:8020/;",
+    "category": "Pop Music",
+    "region": "Ankara",
+    "bitrateKbps": 32
+  },
+  {
+    "id": "tr_036",
+    "name": "PAL Nostalji",
+    "emoji": "📻",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/palnostalji/playlist.m3u8",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 95
+  },
+  {
+    "id": "tr_037",
+    "name": "Radyo Voyage",
+    "emoji": "📻",
+    "streamUrl": "http://voyagewmp.radyotvonline.com/;stream.mp3",
+    "category": "Folk",
+    "region": "Istanbul",
+    "bitrateKbps": 224
+  },
+  {
+    "id": "tr_038",
+    "name": "Radyo ILEF Ankara",
+    "emoji": "🎷",
+    "streamUrl": "http://radyo.cc.ankara.edu.tr:8089/;",
+    "category": "Ankara",
+    "region": "Türkiye",
+    "bitrateKbps": 52
+  },
+  {
+    "id": "tr_039",
+    "name": "TRT FM",
+    "emoji": "📻",
+    "streamUrl": "https://trt.radyotvonline.net/trtfm",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 132
+  },
+  {
+    "id": "tr_040",
+    "name": "TRT Radyo 1",
+    "emoji": "📻",
+    "streamUrl": "https://trt.radyotvonline.net/trt1",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 129
+  },
+  {
+    "id": "tr_041",
+    "name": "Radyo Sputnik",
+    "emoji": "📰",
+    "streamUrl": "https://icecast-rian.cdnvideo.ru/voicestm",
+    "category": "News",
+    "region": "Istanbul",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_042",
+    "name": "Radio 5 Turkey",
+    "emoji": "📻",
+    "streamUrl": "http://radyo.yayin.com.tr:4108/stream",
+    "category": "Adult Contemporary",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_043",
+    "name": "Power Dance",
+    "emoji": "📻",
+    "streamUrl": "https://listen.powerapp.com.tr/powerdance/mpeg/icecast.audio",
+    "category": "Clubbing",
+    "region": "Türkiye",
+    "bitrateKbps": 250
+  },
+  {
+    "id": "tr_044",
+    "name": "Radyo 35",
+    "emoji": "🎤",
+    "streamUrl": "https://yayin.turkhosted.com/6012/stream",
+    "category": "Pop",
+    "region": "izmir",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_045",
+    "name": "Havin FM",
+    "emoji": "📻",
+    "streamUrl": "http://yayin6.radyohizmeti.com:7050/;stream.mp3",
+    "category": "Folk Music",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_046",
+    "name": "NTV Radyo",
+    "emoji": "📰",
+    "streamUrl": "http://ntvrdwmp.radyotvonline.com/",
+    "category": "News",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_047",
+    "name": "KRAL POP",
+    "emoji": "🎤",
+    "streamUrl": "https://dygedge2.radyotvonline.net/kralfm/playlist.m3u8",
+    "category": "Genel",
+    "region": "Turkey",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_048",
+    "name": "dinamo.fm deep",
+    "emoji": "📻",
+    "streamUrl": "http://channels.dinamo.fm/deep-mp3",
+    "category": "Deep House",
+    "region": "Istanbul",
+    "bitrateKbps": 320
+  },
+  {
+    "id": "tr_049",
+    "name": "Diyanet Radyo",
+    "emoji": "📻",
+    "streamUrl": "https://eustr73.mediatriple.net/videoonlylive/mtikoimxnztxlive/broadcast_5e3c1171d7d2a.smil/playlist.m3u8",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 140
+  },
+  {
+    "id": "tr_050",
+    "name": "Metro fm turkey",
+    "emoji": "📻",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/METRO_FM_SC?",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_051",
     "name": "FENOMEN TÜRK",
     "emoji": "📻",
-    "streamUrl": "https://live.radyofenomen.com/fenomenturk/abr/fenomenturk/256/chunks.m3u8"
+    "streamUrl": "https://live.radyofenomen.com/fenomenturk/abr/fenomenturk/256/chunks.m3u8",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
   },
   {
-    "id": "tr_top_100",
-    "name": "JOY TÜRK ROCK TURKEY",
+    "id": "tr_052",
+    "name": "Türkü Radyo",
     "emoji": "📻",
-    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/JOYTURK_ROCK_SC?/"
+    "streamUrl": "https://eu8.fastcast4u.com/proxy/ugur4129?mp=/1",
+    "category": "Türkü Radyo",
+    "region": "kocaeli",
+    "bitrateKbps": 96
+  },
+  {
+    "id": "tr_053",
+    "name": "Avrasya Türk Radyo",
+    "emoji": "📻",
+    "streamUrl": "https://sslyayin.netyayin.net:10909/",
+    "category": "Classical",
+    "region": "Türkiye",
+    "bitrateKbps": 96
+  },
+  {
+    "id": "tr_054",
+    "name": "TRT NAĞME",
+    "emoji": "📻",
+    "streamUrl": "https://tv-trtmuzik.medya.trt.com.tr/master_720.m3u8",
+    "category": "Genel",
+    "region": "ANKARA",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_055",
+    "name": "dinamo.fm sleep",
+    "emoji": "🌙",
+    "streamUrl": "http://channels.dinamo.fm/sleep-mp3",
+    "category": "Ambient",
+    "region": "Istanbul",
+    "bitrateKbps": 320
+  },
+  {
+    "id": "tr_056",
+    "name": "ASPOR",
+    "emoji": "📻",
+    "streamUrl": "http://trkvz-radyolar.ercdn.net/asporradyo/playlist.m3u8",
+    "category": "Classical",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_057",
+    "name": "Pal Fm",
+    "emoji": "🎤",
+    "streamUrl": "https://ssl4.radyotvonline.com/radyohome/palfmhome.stream/playlist.m3u8",
+    "category": "Pop",
+    "region": "Türkiye",
+    "bitrateKbps": 96
+  },
+  {
+    "id": "tr_058",
+    "name": "Radyo D",
+    "emoji": "📻",
+    "streamUrl": "https://moondigitaledge2.radyotvonline.net/radyod/playlist.m3u8",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 130
+  },
+  {
+    "id": "tr_059",
+    "name": "POWER TÜRK DANS TÜRKİYE",
+    "emoji": "📻",
+    "streamUrl": "https://listen.powerapp.com.tr/powerturkdans/abr/powerturkdans/128/playlist.m3u8",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 150
+  },
+  {
+    "id": "tr_060",
+    "name": "Cnn Türk Radyo",
+    "emoji": "📻",
+    "streamUrl": "https://moondigitaledge2.radyotvonline.net/cnnturk/playlist.m3u8?listeningSessionID=669e367246737fe5_6249184_Zq120UIn__0000001w2Bs&downloadSessionID=0",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_061",
+    "name": "Radyo Ekin",
+    "emoji": "📻",
+    "streamUrl": "http://yayin.turkhosted.com:6006/",
+    "category": "Classical",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_062",
+    "name": "(93.0) IGDIR FM",
+    "emoji": "📰",
+    "streamUrl": "https://yayin.yayindakiler.com:4158/;",
+    "category": "Entretenimiento",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_063",
+    "name": "loops radio",
+    "emoji": "📻",
+    "streamUrl": "https://progressive.ozelip.com/7670/stream",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 320
+  },
+  {
+    "id": "tr_064",
+    "name": "powerturk",
+    "emoji": "🎤",
+    "streamUrl": "https://live.powerapp.com.tr/powerturk/abr/playlist.m3u8",
+    "category": "Pop",
+    "region": "Türkiye",
+    "bitrateKbps": 277
+  },
+  {
+    "id": "tr_065",
+    "name": "Pal station",
+    "emoji": "📻",
+    "streamUrl": "http://shoutcast.radyogrup.com:1020/",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 96
+  },
+  {
+    "id": "tr_066",
+    "name": "Radio 44",
+    "emoji": "🎤",
+    "streamUrl": "https://radyo44.80.yayin.com.tr/stream",
+    "category": "Hits",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_067",
+    "name": "Diyanet Kur'an Radyo",
+    "emoji": "📻",
+    "streamUrl": "https://eustr73.mediatriple.net/videoonlylive/mtikoimxnztxlive/broadcast_5e3c14192aa92.smil/playlist.m3u8",
+    "category": "Islamic",
+    "region": "İstanbul",
+    "bitrateKbps": 140
+  },
+  {
+    "id": "tr_068",
+    "name": "dinamo.fm discotheque",
+    "emoji": "📻",
+    "streamUrl": "http://channels.dinamo.fm/discotheque-mp3",
+    "category": "70S",
+    "region": "Istanbul",
+    "bitrateKbps": 320
+  },
+  {
+    "id": "tr_069",
+    "name": "Kalp FM",
+    "emoji": "🌙",
+    "streamUrl": "https://yayin.kalpfm.com:8080/",
+    "category": "Nostalgic",
+    "region": "Istanbul",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_070",
+    "name": "SUPER FM 2 TURKEY",
+    "emoji": "📻",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/SUPER2_SC?/",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_071",
+    "name": "Süper 2 FM",
+    "emoji": "🎤",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/SUPER2_SC.mp3",
+    "category": "Hits",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_072",
+    "name": "Radyo Fenomen Clubbin",
+    "emoji": "📻",
+    "streamUrl": "https://live.radyofenomen.com/fenomenclubbin/128/icecast.audio",
+    "category": "Club",
+    "region": "Türkiye",
+    "bitrateKbps": 56
+  },
+  {
+    "id": "tr_073",
+    "name": "Türkiyem FM",
+    "emoji": "📻",
+    "streamUrl": "https://server7.streamserver24.com/proxy/turkiyemfm?mp=/stream",
+    "category": "Traditional Music",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_074",
+    "name": "HAYATMİX",
+    "emoji": "📻",
+    "streamUrl": "https://hayatmix.yayin.com.tr/mp3",
+    "category": "Classical",
+    "region": "Türkiye",
+    "bitrateKbps": 192
+  },
+  {
+    "id": "tr_075",
+    "name": "JoyTürk Akustik",
+    "emoji": "🎤",
+    "streamUrl": "http://playerservices.streamtheworld.com/api/livestream-redirect/JOYTURK_AKUSTIK128AAC.aac",
+    "category": "Acustic",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_076",
+    "name": "dinamo.fm caffe",
+    "emoji": "🌙",
+    "streamUrl": "http://channels.dinamo.fm/caffe-mp3",
+    "category": "Chillout",
+    "region": "Istanbul",
+    "bitrateKbps": 320
+  },
+  {
+    "id": "tr_077",
+    "name": "JOY TÜRK ROCK TURKEY",
+    "emoji": "🎸",
+    "streamUrl": "https://playerservices.streamtheworld.com/api/livestream-redirect/JOYTURK_ROCK_SC?/",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_078",
+    "name": "Arkadas Radyo",
+    "emoji": "🎤",
+    "streamUrl": "http://yayin2.yayindakiler.com:4134/;stream.nsv",
+    "category": "Hits",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_079",
+    "name": "Vav Radyo",
+    "emoji": "📻",
+    "streamUrl": "https://trkvz-radyolar.ercdn.net/radyovav/playlist.m3u8",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_080",
+    "name": "Radyo Vatan Türkü",
+    "emoji": "📻",
+    "streamUrl": "http://95.0.173.195:9000/turku",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_081",
+    "name": "Radyo Şiran",
+    "emoji": "📻",
+    "streamUrl": "https://live.radyositesihazir.com/8078/stream",
+    "category": "Folk",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_082",
+    "name": "Borusan Klasik",
+    "emoji": "📻",
+    "streamUrl": "http://27783.live.streamtheworld.com/BORUSAN_KLASIKAAC_SC",
+    "category": "Classical",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_083",
+    "name": "Park Fm",
+    "emoji": "📻",
+    "streamUrl": "http://yayin.netradyom.com:8050/PARKFM/",
+    "category": "Folk",
+    "region": "Türkiye",
+    "bitrateKbps": 32
+  },
+  {
+    "id": "tr_084",
+    "name": "Radyo 45’lik, 1970’ler, 1980’ler ve 1990’lar",
+    "emoji": "📻",
+    "streamUrl": "https://stream.radyo45lik.com:4545/",
+    "category": "1970’Ler",
+    "region": "Turkey",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_085",
+    "name": "Halk Tv",
+    "emoji": "📻",
+    "streamUrl": "https://halktv.daioncdn.net/halktv/halktv_1080p.m3u8?sid=6vahxsup0jxl&app=c86957d3-74a7-44da-9ad2-dc358c769609&ce=3",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_086",
+    "name": "Haber Türk Radyo",
+    "emoji": "📰",
+    "streamUrl": "http://haberturkradyo.radyotvonline.net/haberturkradyo",
+    "category": "News",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_087",
+    "name": "Radyo 45'lik",
+    "emoji": "🎤",
+    "streamUrl": "http://stream.radyo45lik.com:4545/",
+    "category": "Pop",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_088",
+    "name": "Erzincan Nostalji Radyo",
+    "emoji": "📻",
+    "streamUrl": "https://erzincannostalji.ozelip.com/8238/stream",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_089",
+    "name": "Radyo Eksen 96.2",
+    "emoji": "🎸",
+    "streamUrl": "http://eksenwmp.radyotvonline.com/;stream.mp3",
+    "category": "Alternative Rock",
+    "region": "Istanbul",
+    "bitrateKbps": 224
+  },
+  {
+    "id": "tr_090",
+    "name": "Fakir Fm",
+    "emoji": "📻",
+    "streamUrl": "https://live.radyositesihazir.com/1025/stream/",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_091",
+    "name": "Erzincan Cem Radyo",
+    "emoji": "📻",
+    "streamUrl": "https://erzincan.80.yayin.com.tr/stream",
+    "category": "Classical",
+    "region": "Türkiye",
+    "bitrateKbps": 96
+  },
+  {
+    "id": "tr_092",
+    "name": "Enderun FM",
+    "emoji": "📻",
+    "streamUrl": "http://yayin2.canliyayin.org:7052/;*.mp3",
+    "category": "Islamic",
+    "region": "Istanbul",
+    "bitrateKbps": 192
+  },
+  {
+    "id": "tr_093",
+    "name": "Trt Spor",
+    "emoji": "📻",
+    "streamUrl": "https://rd-trtradyo1.medya.trt.com.tr/master_128.m3u8",
+    "category": "Genel",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_094",
+    "name": "Radyo Banko",
+    "emoji": "📻",
+    "streamUrl": "http://yayin.netradyom.com:9910/RADYOBANKO",
+    "category": "Folk",
+    "region": "Türkiye",
+    "bitrateKbps": 32
+  },
+  {
+    "id": "tr_095",
+    "name": "TGRT FM",
+    "emoji": "📰",
+    "streamUrl": "https://icecasttgrt.ihlasdigitalassets.com/tgrtfm",
+    "category": "News Talk Music",
+    "region": "Türkiye",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_096",
+    "name": "Damarın Merkezi Fm",
+    "emoji": "🎤",
+    "streamUrl": "http://canli.arabeskinmerkezi.com:9180/stream",
+    "category": "Arabesk Fantazi",
+    "region": "Istanbul",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_097",
+    "name": "90 lar Pop",
+    "emoji": "🎤",
+    "streamUrl": "https://moondigitaledge.radyotvonline.net/radyolanddoksanlar/playlist.m3u8",
+    "category": "Genel",
+    "region": "Istambul",
+    "bitrateKbps": 127
+  },
+  {
+    "id": "tr_098",
+    "name": "Bizim Radyo",
+    "emoji": "📻",
+    "streamUrl": "https://ip132.ozelip.com:7017/",
+    "category": "Talk & Speech",
+    "region": "Türkiye",
+    "bitrateKbps": 64
+  },
+  {
+    "id": "tr_099",
+    "name": "Loops Radio House Station",
+    "emoji": "📻",
+    "streamUrl": "https://loopsdeep.ozelip.com/7806/stream",
+    "category": "House",
+    "region": "Istambul",
+    "bitrateKbps": 128
+  },
+  {
+    "id": "tr_100",
+    "name": "Köroğlu FM",
+    "emoji": "🎤",
+    "streamUrl": "https://yayin.turkhosted.com:6068/stream?/;stream.mp3",
+    "category": "Pop",
+    "region": "Bolu",
+    "bitrateKbps": 96
   }
 ]

@@ -52,6 +52,9 @@ data class Station(
     val name: String,
     val emoji: String,
     val streamUrl: String,
+    val category: String = "Genel",
+    val region: String = "Türkiye",
+    val bitrateKbps: Int = 128,
 )
 
 enum class BottomTab(val label: String) {
@@ -61,11 +64,11 @@ enum class BottomTab(val label: String) {
 }
 
 val defaultStations = listOf(
-    Station("bbc_world", "BBC World Service", "🌍", "https://stream.live.vc.bbcmedia.co.uk/bbc_world_service"),
-    Station("virgin_uk", "Virgin Radio UK", "🎸", "https://radio.virginradio.co.uk/stream"),
-    Station("kexp", "KEXP 90.3", "🎧", "https://kexp.streamguys1.com/kexp160.aac"),
-    Station("powerturk", "Power Türk", "⚡", "https://listen.powerapp.com.tr/powerturk/mpeg/icecast.audio"),
-    Station("slowturk", "Slow Türk", "🌙", "https://radyo.duhnet.tv/slowturk"),
+    Station("bbc_world", "BBC World Service", "🌍", "https://stream.live.vc.bbcmedia.co.uk/bbc_world_service", "News", "UK", 128),
+    Station("virgin_uk", "Virgin Radio UK", "🎸", "https://radio.virginradio.co.uk/stream", "Pop", "UK", 128),
+    Station("kexp", "KEXP 90.3", "🎧", "https://kexp.streamguys1.com/kexp160.aac", "Indie", "US", 160),
+    Station("powerturk", "Power Türk", "⚡", "https://listen.powerapp.com.tr/powerturk/mpeg/icecast.audio", "Pop", "Türkiye", 128),
+    Station("slowturk", "Slow Türk", "🌙", "https://radyo.duhnet.tv/slowturk", "Slow", "Türkiye", 128),
 )
 
 private val BgDark = Color(0xFF080A16)
@@ -158,6 +161,7 @@ fun App(
                                 }
                                 Column {
                                     Text(selectedStation.name, color = TextMain, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleLarge)
+                                    Text("${selectedStation.category} • ${selectedStation.region} • ${selectedStation.bitrateKbps} kbps", color = TextMuted)
                                     Text("Durum: $status", color = NeonCyan, modifier = Modifier.alpha(pulseAlpha))
                                 }
                             }
@@ -277,6 +281,7 @@ fun App(
                     .background(Color(0xFF171E38))
                     .border(1.dp, Color(0xFF303A60), RoundedCornerShape(18.dp))
                     .navigationBarsPadding()
+                    .height(84.dp)
                     .padding(horizontal = 10.dp, vertical = 10.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
@@ -287,7 +292,7 @@ fun App(
                             .clip(RoundedCornerShape(12.dp))
                             .background(if (selectedTab == tab) NeonPurple else Color.Transparent)
                             .clickable { selectedTab = tab }
-                            .padding(vertical = 14.dp),
+                            .padding(vertical = 16.dp),
                         contentAlignment = Alignment.Center,
                     ) {
                         Text(tab.label, color = if (selectedTab == tab) Color.White else TextMuted)
