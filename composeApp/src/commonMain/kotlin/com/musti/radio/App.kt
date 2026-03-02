@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,31 +29,44 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 data class Station(
+    val id: String,
     val name: String,
     val emoji: String,
     val streamUrl: String,
 )
 
-private val stations = listOf(
-    Station("BBC World Service", "🌍", "https://stream.live.vc.bbcmedia.co.uk/bbc_world_service"),
-    Station("Virgin Radio UK", "🎸", "https://radio.virginradio.co.uk/stream"),
-    Station("KEXP 90.3", "🎧", "https://kexp.streamguys1.com/kexp160.aac"),
-    Station("Power Türk", "⚡", "https://listen.powerapp.com.tr/powerturk/mpeg/icecast.audio"),
-    Station("Slow Türk", "🌙", "https://radyo.duhnet.tv/slowturk"),
+val allStations = listOf(
+    Station("bbc_world", "BBC World Service", "🌍", "https://stream.live.vc.bbcmedia.co.uk/bbc_world_service"),
+    Station("virgin_uk", "Virgin Radio UK", "🎸", "https://radio.virginradio.co.uk/stream"),
+    Station("kexp", "KEXP 90.3", "🎧", "https://kexp.streamguys1.com/kexp160.aac"),
+    Station("powerturk", "Power Türk", "⚡", "https://listen.powerapp.com.tr/powerturk/mpeg/icecast.audio"),
+    Station("slowturk", "Slow Türk", "🌙", "https://radyo.duhnet.tv/slowturk"),
 )
 
 @Composable
-fun App(player: RadioPlayer) {
+fun App(
+    player: RadioPlayer,
+    initialStationId: String? = null,
+    initialFavorites: Set<String> = emptySet(),
+    onStationChanged: (String) -> Unit = {},
+    onFavoritesChanged: (Set<String>) -> Unit = {},
+) {
     MaterialTheme {
         var isPlaying by remember { mutableStateOf(false) }
-        var selectedStation by remember { mutableStateOf(stations.first()) }
+        var selectedStation by remember {
+            mutableStateOf(allStations.firstOrNull { it.id == initialStationId } ?: allStations.first())
+        }
+        var favorites by remember { mutableStateOf(initialFavorites) }
         var volume by remember { mutableStateOf(0.8f) }
         var status by remember { mutableStateOf("Hazır") }
+        var query by remember { mutableStateOf("") }
 
         DisposableEffect(player) {
             player.setStatusListener { status = it }
             onDispose { player.setStatusListener { } }
         }
+
+        val filteredStations = allStations.filter { it.name.contains(query, ignoreCase = true) }
 
         Column(
             modifier = Modifier
@@ -80,17 +94,24 @@ fun App(player: RadioPlayer) {
                             .padding(horizontal = 10.dp, vertical = 6.dp),
                     )
 
-                    Button(onClick = {
-                        if (isPlaying) {
-                            player.stop()
-                            isPlaying = false
-                        } else {
-                            player.play(selectedStation.streamUrl)
-                            player.setVolume(volume)
-                            isPlaying = true
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Button(onClick = {
+                            if (isPlaying) {
+                                player.stop()
+                                isPlaying = false
+                            } else {
+                                player.play(selectedStation.streamUrl)
+                                player.setVolume(volume)
+                                isPlaying = true
+                            }
+                        }) { Text(if (isPlaying) "Durdur" else "Oynat") }
+
+                        Button(onClick = {
+                            favorites = if (favorites.contains(selectedStation.id)) favorites - selectedStation.id else favorites + selectedStation.id
+                            onFavoritesChanged(favorites)
+                        }) {
+                            Text(if (favorites.contains(selectedStation.id)) "★ Favoriden çıkar" else "☆ Favoriye ekle")
                         }
-                    }) {
-                        Text(if (isPlaying) "Durdur" else "Oynat")
                     }
                 }
             }
@@ -110,10 +131,18 @@ fun App(player: RadioPlayer) {
                 }
             }
 
+            OutlinedTextField(
+                value = query,
+                onValueChange = { query = it },
+                modifier = Modifier.fillMaxWidth(),
+                label = { Text("Kanal ara") },
+                singleLine = true,
+            )
+
             Text("Kanallar", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
 
             LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                items(stations) { station ->
+                items(filteredStations) { station ->
                     val selected = station == selectedStation
                     Card(
                         modifier = Modifier
@@ -124,9 +153,8 @@ fun App(player: RadioPlayer) {
                             )
                             .clickable {
                                 selectedStation = station
-                                if (isPlaying) {
-                                    player.play(station.streamUrl)
-                                }
+                                onStationChanged(station.id)
+                                if (isPlaying) player.play(station.streamUrl)
                             }
                     ) {
                         Row(
@@ -136,7 +164,8 @@ fun App(player: RadioPlayer) {
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween,
                         ) {
-                            Text("${station.emoji} ${station.name}", fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal)
+                            val star = if (favorites.contains(station.id)) "★ " else ""
+                            Text("$star${station.emoji} ${station.name}", fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal)
                             if (selected) Text("Seçili")
                         }
                     }
