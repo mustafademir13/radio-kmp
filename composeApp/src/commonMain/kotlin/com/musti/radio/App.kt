@@ -18,9 +18,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -125,7 +122,7 @@ fun App(
             .fillMaxSize()
             .background(brush = Brush.verticalGradient(colors = listOf(Color(0xFF2D1762), BgDark, Color(0xFF0C1228))))
             .padding(14.dp)
-            .windowInsetsPadding(WindowInsets.safeDrawing),
+            
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
@@ -133,7 +130,7 @@ fun App(
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 item {
-                    Text("RadyoNova", color = TextMain, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
+                    Text("RadyoNova", color = TextMain, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 4.dp, bottom = 2.dp))
                     Box(
                         modifier = Modifier
                             .padding(top = 6.dp)
@@ -245,8 +242,7 @@ fun App(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(14.dp)
-            .windowInsetsPadding(WindowInsets.safeDrawing),
+                                .padding(14.dp),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween,
                         ) {
@@ -307,7 +303,7 @@ fun App(
             AdBanner(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 8.dp)
+                    .padding(top = 4.dp, bottom = 2.dp)
             )
         }
     }
