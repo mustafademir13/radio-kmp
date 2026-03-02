@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -121,16 +123,17 @@ fun App(
         modifier = Modifier
             .fillMaxSize()
             .background(brush = Brush.verticalGradient(colors = listOf(Color(0xFF2D1762), BgDark, Color(0xFF0C1228))))
-            .padding(14.dp)
+             .padding(horizontal = 12.dp)
             
     ) {
-        Column(modifier = Modifier.fillMaxSize()) {
+        Column(modifier = Modifier.fillMaxSize().statusBarsPadding()) {
             LazyColumn(
                 modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 item {
-                    Text("RadyoNova", color = TextMain, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 4.dp, bottom = 2.dp))
+                    Text("RadyoNova", color = TextMain, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 4.dp)
+                    .navigationBarsPadding())
                     Box(
                         modifier = Modifier
                             .padding(top = 6.dp)
@@ -242,7 +245,7 @@ fun App(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(14.dp),
+                                 .padding(horizontal = 12.dp),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween,
                         ) {
@@ -282,6 +285,7 @@ fun App(
                     .clip(RoundedCornerShape(18.dp))
                     .background(Color(0xFF171E38))
                     .border(1.dp, Color(0xFF303A60), RoundedCornerShape(18.dp))
+                    .navigationBarsPadding()
                     .padding(8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
@@ -303,7 +307,8 @@ fun App(
             AdBanner(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 4.dp, bottom = 2.dp)
+                    .padding(top = 4.dp)
+                    .navigationBarsPadding()
             )
         }
     }
