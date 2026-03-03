@@ -22,4 +22,16 @@ class AppPrefs(context: Context) {
 
     fun setAlarmEpochMs(value: Long) = prefs.edit().putLong("alarm_epoch_ms", value).apply()
     fun getAlarmEpochMs(): Long = prefs.getLong("alarm_epoch_ms", 0L)
+
+    fun setAlarmRepeatDaily(value: Boolean) = prefs.edit().putBoolean("alarm_repeat_daily", value).apply()
+    fun isAlarmRepeatDaily(): Boolean = prefs.getBoolean("alarm_repeat_daily", false)
+
+    fun setAlarmHour(value: Int) = prefs.edit().putInt("alarm_hour", value).apply()
+    fun getAlarmHour(): Int = prefs.getInt("alarm_hour", 8)
+
+    fun setAlarmMinute(value: Int) = prefs.edit().putInt("alarm_minute", value).apply()
+    fun getAlarmMinute(): Int = prefs.getInt("alarm_minute", 0)
+
+    fun setProEnabled(value: Boolean) = prefs.edit().putBoolean("pro_enabled", value).apply()
+    fun isProEnabled(): Boolean = prefs.getBoolean("pro_enabled", false)
 }

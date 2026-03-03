@@ -47,6 +47,8 @@ class MainActivity : ComponentActivity() {
                 onFavoritesChanged = { prefs.setFavorites(it) },
                 onSetAlarm = { mins -> AlarmScheduler.setInMinutes(this@MainActivity, mins) },
                 onCancelAlarm = { AlarmScheduler.cancel(this@MainActivity) },
+                isPro = prefs.isProEnabled(),
+                onSetPro = { enabled -> prefs.setProEnabled(enabled) },
                 stations = stations,
             )
         }
