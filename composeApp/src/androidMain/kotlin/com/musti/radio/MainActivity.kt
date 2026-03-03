@@ -10,6 +10,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.google.android.gms.ads.MobileAds
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +23,8 @@ class MainActivity : ComponentActivity() {
             lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
             window.attributes = lp
         }
+        runCatching { MobileAds.initialize(this) {} }
+
         Thread.setDefaultUncaughtExceptionHandler { _, e ->
             runCatching {
                 val dir = File(filesDir, "logs")
@@ -42,6 +45,8 @@ class MainActivity : ComponentActivity() {
                 initialFavorites = prefs.getFavorites(),
                 onStationChanged = { prefs.setLastStationId(it) },
                 onFavoritesChanged = { prefs.setFavorites(it) },
+                onSetAlarm = { mins -> AlarmScheduler.setInMinutes(this@MainActivity, mins) },
+                onCancelAlarm = { AlarmScheduler.cancel(this@MainActivity) },
                 stations = stations,
             )
         }
