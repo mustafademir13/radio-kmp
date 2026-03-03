@@ -355,7 +355,7 @@ fun App(
                 border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFF344061)),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 4.dp, bottom = 6.dp)
+                    .padding(top = 6.dp, bottom = 10.dp)
             ) {
                 Row(
                     modifier = Modifier
@@ -424,7 +424,7 @@ fun App(
             AdBanner(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 2.dp, bottom = 4.dp)
+                    .padding(top = 4.dp, bottom = 8.dp)
             )
 
             Row(
