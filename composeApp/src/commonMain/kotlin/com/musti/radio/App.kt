@@ -62,6 +62,7 @@ enum class BottomTab(val label: String) {
     Browse("Browse"),
     Favorites("Favorites"),
     Recent("Recent"),
+    Stable50("Stable 50"),
 }
 
 val defaultStations = listOf(
@@ -99,6 +100,7 @@ fun App(
     var status by remember { mutableStateOf("Hazır") }
     var query by remember { mutableStateOf("") }
     var selectedTab by remember { mutableStateOf(BottomTab.Browse) }
+    var selectedCategory by remember { mutableStateOf("Tümü") }
     var diagnostics by remember { mutableStateOf(player.diagnosticsSummary()) }
 
     DisposableEffect(player) {
@@ -106,12 +108,16 @@ fun App(
         onDispose { player.setStatusListener { } }
     }
 
+    val stable50 = stations.sortedWith(compareByDescending<Station> { it.bitrateKbps }.thenBy { it.name }).take(50)
     val baseList = when (selectedTab) {
         BottomTab.Browse -> stations
         BottomTab.Favorites -> stations.filter { favorites.contains(it.id) }
         BottomTab.Recent -> stations.filter { recent.contains(it.id) }
+        BottomTab.Stable50 -> stable50
     }
-    val filteredStations = baseList.filter { it.name.contains(query, ignoreCase = true) }
+    val categories = listOf("Tümü") + baseList.map { it.category }.filter { it.isNotBlank() }.distinct().take(8)
+    val categoryList = if (selectedCategory == "Tümü") baseList else baseList.filter { it.category == selectedCategory }
+    val filteredStations = categoryList.filter { it.name.contains(query, ignoreCase = true) }
 
     val transition = rememberInfiniteTransition(label = "pulse")
     val pulseAlpha by transition.animateFloat(
@@ -137,8 +143,7 @@ fun App(
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 item {
-                    Text("RadyoNova", color = TextMain, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 2.dp)
-                    .navigationBarsPadding())
+                    Text("RadyoNova", color = TextMain, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 4.dp))
                 }
 
                 item {
@@ -214,6 +219,20 @@ fun App(
                 }
 
                 item {
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                        categories.forEach { cat ->
+                            Box(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(12.dp))
+                                    .background(if (selectedCategory == cat) NeonPurple else Color(0xFF2D3756))
+                                    .clickable { selectedCategory = cat }
+                                    .padding(horizontal = 10.dp, vertical = 7.dp),
+                            ) { Text(cat, color = Color.White, style = MaterialTheme.typography.labelMedium) }
+                        }
+                    }
+                }
+
+                item {
                     Text(selectedTab.label, color = TextMain, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
                 }
 
@@ -242,7 +261,7 @@ fun App(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                 .padding(horizontal = 12.dp),
+                                 .padding(horizontal = 14.dp, vertical = 18.dp),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween,
                         ) {
@@ -258,18 +277,18 @@ fun App(
                                 Column {
                                     val star = if (favorites.contains(station.id)) "★ " else ""
                                     Text("$star${station.name}", color = TextMain, fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal)
-                                    Text(if (selected) "LIVE" else "128kbps", color = TextMuted)
+                                    Text("${station.category} • ${station.region} • ${station.bitrateKbps} kbps", color = if (selected) NeonCyan else TextMuted)
                                 }
                             }
 
                             Box(
                                 modifier = Modifier
-                                    .height(38.dp)
+                                    .height(42.dp)
                                     .clip(RoundedCornerShape(14.dp))
                                     .background(if (selected) NeonPurple else Color(0xFF2D3756))
                                     .padding(horizontal = 14.dp, vertical = 9.dp),
                             ) {
-                                Text(if (selected) "Seçili" else "Aç", color = Color.White)
+                                Text(if (selected) "Seçili" else "Oynat", color = Color.White)
                             }
                         }
                     }

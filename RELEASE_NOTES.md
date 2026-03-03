@@ -1,3 +1,17 @@
+# RadyoNova v1.0.2-pro
+
+## Yeni
+- Stable 50 sekmesi
+- Kategori filtre chipleri
+- Zengin istasyon kartları (kategori/bölge/bitrate)
+- Uygulama içi Tanılama kartı
+
+## Stabilite
+- Audio focus yönetimi
+- Fallback stream zinciri
+- Gelişmiş player hata/kaza loglama
+
+
 # RadyoNova v1.0.1-neon
 
 ## Yeni
