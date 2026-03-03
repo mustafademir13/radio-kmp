@@ -1,6 +1,10 @@
 package com.musti.radio
 
 import android.content.Context
+import android.media.AudioAttributes
+import android.media.AudioFocusRequest
+import android.media.AudioManager
+import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import androidx.media3.common.MediaItem
@@ -15,12 +19,46 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
     private val appContext = context.applicationContext
     private val player = RadioPlayerHolder.get(appContext)
     private val mainHandler = Handler(Looper.getMainLooper())
+    private val audioManager = appContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
     private var statusListener: (String) -> Unit = {}
     private var playlistUrls: List<String> = emptyList()
     private var currentUrlIndex = 0
     private var retryCount = 0
     private val maxRetryPerUrl = 2
+
+    private val audioFocusListener = AudioManager.OnAudioFocusChangeListener { change ->
+        when (change) {
+            AudioManager.AUDIOFOCUS_LOSS,
+            AudioManager.AUDIOFOCUS_LOSS_TRANSIENT -> {
+                player.playWhenReady = false
+                statusListener("Ses odağı kaybedildi")
+            }
+            AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK -> {
+                player.volume = 0.3f
+            }
+            AudioManager.AUDIOFOCUS_GAIN -> {
+                player.volume = 1.0f
+                if (playlistUrls.isNotEmpty()) {
+                    player.playWhenReady = true
+                    statusListener("Çalıyor")
+                }
+            }
+        }
+    }
+
+    private val focusRequest: AudioFocusRequest? =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
+                .setAudioAttributes(
+                    AudioAttributes.Builder()
+                        .setUsage(AudioAttributes.USAGE_MEDIA)
+                        .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                        .build()
+                )
+                .setOnAudioFocusChangeListener(audioFocusListener)
+                .build()
+        } else null
 
     init {
         player.addListener(object : Player.Listener {
@@ -63,7 +101,29 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
         playlistUrls = listOf(url) + fallbackUrls.filter { it.isNotBlank() && it != url }
         currentUrlIndex = 0
         retryCount = 0
+        if (!requestAudioFocus()) {
+            statusListener("Ses odağı alınamadı")
+            return
+        }
         safePlay(playlistUrls.first())
+    }
+
+    private fun requestAudioFocus(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            audioManager.requestAudioFocus(focusRequest!!) == AudioManager.AUDIOFOCUS_REQUEST_GRANTED
+        } else {
+            @Suppress("DEPRECATION")
+            audioManager.requestAudioFocus(audioFocusListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN) == AudioManager.AUDIOFOCUS_REQUEST_GRANTED
+        }
+    }
+
+    private fun abandonAudioFocus() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            audioManager.abandonAudioFocusRequest(focusRequest!!)
+        } else {
+            @Suppress("DEPRECATION")
+            audioManager.abandonAudioFocus(audioFocusListener)
+        }
     }
 
     private fun safePlay(url: String) {
@@ -98,6 +158,7 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
             } else {
                 mainHandler.post { player.stop() }
             }
+            abandonAudioFocus()
             statusListener("Durduruldu")
         }.onFailure {
             logError("stop ${it.message}")
@@ -118,6 +179,24 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
 
     override fun setStatusListener(listener: (String) -> Unit) {
         statusListener = listener
+    }
+
+    override fun diagnosticsSummary(): String {
+        val crash = tailLog(File(appContext.filesDir, "logs/radionova-crash.log"), 4)
+        val playerLog = tailLog(File(appContext.filesDir, "logs/radionova-player.log"), 6)
+        return buildString {
+            append("Crash log (son 4):\n")
+            append(if (crash.isBlank()) "- yok\n" else crash + "\n")
+            append("\nPlayer log (son 6):\n")
+            append(if (playerLog.isBlank()) "- yok" else playerLog)
+        }
+    }
+
+    private fun tailLog(file: File, lines: Int): String {
+        return runCatching {
+            if (!file.exists()) return ""
+            file.readLines().takeLast(lines).joinToString("\n")
+        }.getOrDefault("")
     }
 
     private fun logError(msg: String) {

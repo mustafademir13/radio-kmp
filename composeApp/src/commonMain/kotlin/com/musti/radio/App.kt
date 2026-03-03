@@ -99,6 +99,7 @@ fun App(
     var status by remember { mutableStateOf("Hazır") }
     var query by remember { mutableStateOf("") }
     var selectedTab by remember { mutableStateOf(BottomTab.Browse) }
+    var diagnostics by remember { mutableStateOf(player.diagnosticsSummary()) }
 
     DisposableEffect(player) {
         player.setStatusListener { status = it }
@@ -272,6 +273,27 @@ fun App(
                             }
                         }
                     }
+                }
+            }
+
+
+            Card(
+                colors = CardDefaults.cardColors(containerColor = CardDark2),
+                shape = RoundedCornerShape(14.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 6.dp)
+            ) {
+                Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                        Text("Tanılama", color = TextMain, fontWeight = FontWeight.SemiBold)
+                        Text(
+                            "Yenile",
+                            color = NeonCyan,
+                            modifier = Modifier.clickable { diagnostics = player.diagnosticsSummary() }
+                        )
+                    }
+                    Text(diagnostics, color = TextMuted, style = MaterialTheme.typography.bodySmall)
                 }
             }
 

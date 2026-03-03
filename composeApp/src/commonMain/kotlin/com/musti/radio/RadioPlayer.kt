@@ -5,4 +5,5 @@ interface RadioPlayer {
     fun stop()
     fun setVolume(volume: Float)
     fun setStatusListener(listener: (String) -> Unit)
+    fun diagnosticsSummary(): String
 }
