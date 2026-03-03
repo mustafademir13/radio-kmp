@@ -161,23 +161,23 @@ fun App(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 item {
-                    Text("RadyoNova", color = TextMain, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 4.dp))
+                    Text("RadyoNova", color = TextMain, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 4.dp))
                 }
 
                 item {
                     Card(
-                        shape = RoundedCornerShape(28.dp),
+                        shape = RoundedCornerShape(20.dp),
                         colors = CardDefaults.cardColors(containerColor = CardDark),
                         border = androidx.compose.foundation.BorderStroke(1.dp, NeonPurple.copy(alpha = 0.55f)),
                         modifier = Modifier.fillMaxWidth(),
                     ) {
-                        Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             Text("Now Playing", color = TextMuted)
 
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                                 Box(
                                     modifier = Modifier
-                                        .size(46.dp)
+                                        .size(40.dp)
                                         .clip(CircleShape)
                                         .background(Brush.linearGradient(listOf(NeonPurple, NeonCyan))),
                                     contentAlignment = Alignment.Center,
@@ -185,17 +185,16 @@ fun App(
                                     Text(selectedStation.emoji)
                                 }
                                 Column {
-                                    Text(selectedStation.name, color = TextMain, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleLarge, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                                    Text("${selectedStation.category} • ${selectedStation.region} • ${selectedStation.bitrateKbps} kbps", color = TextMuted, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                                    Text("Skor: ${selectedStation.healthScore}/100", color = NeonCyan)
-                                    Text("Durum: $status", color = NeonCyan, modifier = Modifier.alpha(pulseAlpha))
+                                    Text(selectedStation.name, color = TextMain, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                    Text("${selectedStation.category} • ${selectedStation.region}", color = TextMuted, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                    Text("Durum: $status", color = NeonCyan, modifier = Modifier.alpha(pulseAlpha), maxLines = 1)
                                 }
                             }
 
                             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                                 Box(
                                     modifier = Modifier
-                                        .size(130.dp)
+                                        .size(96.dp)
                                         .clip(CircleShape)
                                         .background(Brush.radialGradient(listOf(NeonCyan, NeonPurple)))
                                         .clickable {
@@ -311,14 +310,14 @@ fun App(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                 .padding(horizontal = 14.dp, vertical = 18.dp),
+                                 .padding(horizontal = 12.dp, vertical = 14.dp),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween,
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                                 Box(
                                     modifier = Modifier
-                                        .size(42.dp)
+                                        .size(36.dp)
                                         .clip(CircleShape)
                                         .background(Brush.linearGradient(listOf(NeonPurple.copy(alpha = 0.7f), NeonCyan.copy(alpha = 0.7f)))),
                                     contentAlignment = Alignment.Center,
@@ -361,7 +360,7 @@ fun App(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 12.dp, vertical = 10.dp),
+                        .padding(horizontal = 10.dp, vertical = 8.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
@@ -407,7 +406,7 @@ fun App(
                     .background(Color(0xFF171E38))
                     .border(1.dp, Color(0xFF303A60), RoundedCornerShape(18.dp))
                     .navigationBarsPadding()
-                    .height(76.dp)
+                    .height(68.dp)
                     .padding(horizontal = 10.dp, vertical = 10.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
