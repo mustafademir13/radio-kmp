@@ -56,6 +56,7 @@ data class Station(
     val region: String = "Türkiye",
     val bitrateKbps: Int = 128,
     val fallbackUrls: List<String> = emptyList(),
+    val healthScore: Int = 70,
 )
 
 enum class BottomTab(val label: String) {
@@ -115,9 +116,10 @@ fun App(
         onDispose { player.setStatusListener { } }
     }
 
-    val stable50 = stations.sortedWith(compareByDescending<Station> { it.bitrateKbps }.thenBy { it.name }).take(50)
+    val activeStations = stations.filter { it.healthScore >= 40 }
+    val stable50 = activeStations.sortedWith(compareByDescending<Station> { it.healthScore }.thenByDescending { it.bitrateKbps }.thenBy { it.name }).take(50)
     val baseList = when (selectedTab) {
-        BottomTab.Browse -> stations
+        BottomTab.Browse -> activeStations
         BottomTab.Favorites -> stations.filter { favorites.contains(it.id) }
         BottomTab.Recent -> stations.filter { recent.contains(it.id) }
         BottomTab.Stable50 -> stable50
@@ -181,6 +183,7 @@ fun App(
                                 Column {
                                     Text(selectedStation.name, color = TextMain, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleLarge)
                                     Text("${selectedStation.category} • ${selectedStation.region} • ${selectedStation.bitrateKbps} kbps", color = TextMuted)
+                                    Text("Skor: ${selectedStation.healthScore}/100", color = NeonCyan)
                                     Text("Durum: $status", color = NeonCyan, modifier = Modifier.alpha(pulseAlpha))
                                 }
                             }
@@ -303,7 +306,8 @@ fun App(
                                 Column {
                                     val star = if (favorites.contains(station.id)) "★ " else ""
                                     Text("$star${station.name}", color = TextMain, fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal)
-                                    Text("${station.category} • ${station.region} • ${station.bitrateKbps} kbps", color = if (selected) NeonCyan else TextMuted)
+                                    Text("${station.category} • ${station.region}", color = TextMuted)
+                                    Text("${station.bitrateKbps} kbps • Skor ${station.healthScore}", color = if (selected) NeonCyan else TextMuted)
                                 }
                             }
 
@@ -314,7 +318,7 @@ fun App(
                                     .background(if (selected) NeonPurple else Color(0xFF2D3756))
                                     .padding(horizontal = 14.dp, vertical = 9.dp),
                             ) {
-                                Text(if (selected) "Seçili" else "Oynat", color = Color.White)
+                                Text(if (selected) "Seçili" else if (station.healthScore < 55) "Zayıf" else "Oynat", color = Color.White)
                             }
                         }
                     }

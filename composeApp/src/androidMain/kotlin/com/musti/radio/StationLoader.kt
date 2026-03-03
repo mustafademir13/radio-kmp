@@ -4,6 +4,16 @@ import android.content.Context
 import org.json.JSONArray
 
 object StationLoader {
+    private fun computeScore(bitrate: Int, category: String): Int {
+        val base = when {
+            bitrate >= 192 -> 92
+            bitrate >= 128 -> 82
+            bitrate >= 96 -> 72
+            else -> 60
+        }
+        val catBoost = if (category.contains("News", true) || category.contains("Pop", true)) 4 else 0
+        return (base + catBoost).coerceIn(40, 99)
+    }
     private fun parseFallbacks(o: org.json.JSONObject): List<String> {
         val list = mutableListOf<String>()
         if (o.has("fallbackUrls")) {
@@ -41,6 +51,7 @@ object StationLoader {
                             region = o.optString("region", "Türkiye"),
                             bitrateKbps = o.optInt("bitrateKbps", 128),
                             fallbackUrls = parseFallbacks(o),
+                            healthScore = o.optInt("healthScore", computeScore(o.optInt("bitrateKbps", 128), o.optString("category", "Genel"))),
                         )
                     )
                 }
