@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -109,7 +110,6 @@ fun App(
     var selectedTab by remember { mutableStateOf(BottomTab.Browse) }
     var selectedCategory by remember { mutableStateOf("Tümü") }
     var sortMode by remember { mutableStateOf(SortMode.Popular) }
-    var diagnostics by remember { mutableStateOf(player.diagnosticsSummary()) }
 
     DisposableEffect(player) {
         player.setStatusListener { status = it }
@@ -148,8 +148,7 @@ fun App(
         modifier = Modifier
             .fillMaxSize()
             .background(brush = Brush.verticalGradient(colors = listOf(Color(0xFF2D1762), BgDark, Color(0xFF0C1228))))
-             .padding(horizontal = 12.dp)
-            
+            .padding(horizontal = 12.dp)
     ) {
         Column(modifier = Modifier.fillMaxSize().statusBarsPadding()) {
             LazyColumn(
@@ -234,8 +233,8 @@ fun App(
                 }
 
                 item {
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
-                        categories.forEach { cat ->
+                    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                        items(categories) { cat ->
                             Box(
                                 modifier = Modifier
                                     .clip(RoundedCornerShape(12.dp))
@@ -248,8 +247,8 @@ fun App(
                 }
 
                 item {
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
-                        SortMode.entries.forEach { mode ->
+                    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                        items(SortMode.entries) { mode ->
                             Box(
                                 modifier = Modifier
                                     .clip(RoundedCornerShape(12.dp))
@@ -259,10 +258,6 @@ fun App(
                             ) { Text(mode.label, color = Color.White, style = MaterialTheme.typography.labelMedium) }
                         }
                     }
-                }
-
-                item {
-                    Text(selectedTab.label, color = TextMain, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
                 }
 
                 items(filteredStations) { station ->
@@ -297,7 +292,7 @@ fun App(
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                                 Box(
                                     modifier = Modifier
-                                        .size(38.dp)
+                                        .size(42.dp)
                                         .clip(CircleShape)
                                         .background(Brush.linearGradient(listOf(NeonPurple.copy(alpha = 0.7f), NeonCyan.copy(alpha = 0.7f)))),
                                     contentAlignment = Alignment.Center,
@@ -326,25 +321,7 @@ fun App(
             }
 
 
-            Card(
-                colors = CardDefaults.cardColors(containerColor = CardDark2),
-                shape = RoundedCornerShape(14.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 6.dp)
-            ) {
-                Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                        Text("Tanılama", color = TextMain, fontWeight = FontWeight.SemiBold)
-                        Text(
-                            "Yenile",
-                            color = NeonCyan,
-                            modifier = Modifier.clickable { diagnostics = player.diagnosticsSummary() }
-                        )
-                    }
-                    Text(diagnostics, color = TextMuted, style = MaterialTheme.typography.bodySmall)
-                }
-            }
+
 
             Row(
                 modifier = Modifier
@@ -376,7 +353,6 @@ fun App(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 2.dp)
-                    .navigationBarsPadding()
             )
         }
     }
