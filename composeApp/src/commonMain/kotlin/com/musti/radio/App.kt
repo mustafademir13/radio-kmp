@@ -310,7 +310,7 @@ fun App(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                 .padding(horizontal = 12.dp, vertical = 14.dp),
+                                .padding(horizontal = 12.dp, vertical = 14.dp),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween,
                         ) {
@@ -338,7 +338,7 @@ fun App(
                                     .background(if (selected) NeonPurple else Color(0xFF2D3756))
                                     .padding(horizontal = 14.dp, vertical = 9.dp),
                             ) {
-                                Text(if (selected) "Seçili" else if (station.healthScore < 55) "Zayıf" else "Oynat", color = Color.White)
+                                Text(if (selected) "Seçili" else if (station.healthScore < 55) "Zayıf" else "Oynat", color = Color.White, maxLines = 1)
                             }
                         }
                     }
@@ -380,24 +380,52 @@ fun App(
                             style = MaterialTheme.typography.bodySmall
                         )
                     }
-                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                        IconButton(onClick = {
-                            if (isPlaying) {
-                                player.stop(); isPlaying = false
-                            } else {
-                                player.play(selectedStation.streamUrl, selectedStation.fallbackUrls)
-                                player.setVolume(volume)
-                                isPlaying = true
-                            }
-                        }) {
-                            Text(if (isPlaying) "❚❚" else "▶", color = Color.White)
+                    Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        IconButton(
+                            onClick = {
+                                if (isPlaying) {
+                                    player.stop(); isPlaying = false
+                                } else {
+                                    player.play(selectedStation.streamUrl, selectedStation.fallbackUrls)
+                                    player.setVolume(volume)
+                                    isPlaying = true
+                                }
+                            },
+                            modifier = Modifier
+                                .size(42.dp)
+                                .clip(CircleShape)
+                                .background(Color(0xFF2D3756))
+                        ) {
+                            Text(
+                                if (isPlaying) "❚❚" else "▶",
+                                color = Color.White,
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold
+                            )
                         }
-                        IconButton(onClick = { player.stop(); isPlaying = false }) {
-                            Text("■", color = Color.White)
+                        IconButton(
+                            onClick = { player.stop(); isPlaying = false },
+                            modifier = Modifier
+                                .size(42.dp)
+                                .clip(CircleShape)
+                                .background(Color(0xFF2D3756))
+                        ) {
+                            Text(
+                                "■",
+                                color = Color.White,
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold
+                            )
                         }
                     }
                 }
             }
+
+            AdBanner(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 2.dp, bottom = 4.dp)
+            )
 
             Row(
                 modifier = Modifier
@@ -424,12 +452,6 @@ fun App(
                     }
                 }
             }
-
-            AdBanner(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 2.dp)
-            )
         }
     }
 }
