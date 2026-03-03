@@ -97,6 +97,8 @@ fun App(
     initialFavorites: Set<String> = emptySet(),
     onStationChanged: (String) -> Unit = {},
     onFavoritesChanged: (Set<String>) -> Unit = {},
+    onSetAlarm: (Int) -> Unit = {},
+    onCancelAlarm: () -> Unit = {},
     stations: List<Station> = defaultStations,
 ) {
     var isPlaying by remember { mutableStateOf(false) }
@@ -227,6 +229,11 @@ fun App(
                                 onClick = { player.cancelSleepTimer() },
                                 modifier = Modifier.fillMaxWidth()
                             ) { Text("Uyku zamanlayıcısını iptal et") }
+                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                                Button(onClick = { onSetAlarm(15) }, modifier = Modifier.weight(1f)) { Text("Alarm +15") }
+                                Button(onClick = { onSetAlarm(30) }, modifier = Modifier.weight(1f)) { Text("Alarm +30") }
+                                Button(onClick = { onCancelAlarm() }, modifier = Modifier.weight(1f)) { Text("Alarm İptal") }
+                            }
                             Text(
                                 if (sleepRemaining > 0) "Uyku zamanlayıcısı: ${sleepRemaining} dk kaldı" else "Uyku zamanlayıcısı kapalı",
                                 color = TextMuted,

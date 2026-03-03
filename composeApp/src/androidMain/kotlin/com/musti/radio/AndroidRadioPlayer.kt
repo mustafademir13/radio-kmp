@@ -22,6 +22,7 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
     private val player = RadioPlayerHolder.get(appContext)
     private val mainHandler = Handler(Looper.getMainLooper())
     private val audioManager = appContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+    private val prefs = AppPrefs(appContext)
 
     private var statusListener: (String) -> Unit = {}
     private var playlistUrls: List<String> = emptyList()
@@ -103,6 +104,9 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
 
     override fun play(url: String, fallbackUrls: List<String>) {
         playlistUrls = listOf(url) + fallbackUrls.filter { it.isNotBlank() && it != url }
+        prefs.setLastStreamUrl(url)
+        prefs.setLastFallbackCsv(fallbackUrls.joinToString(","))
+        prefs.setWasPlaying(true)
         currentUrlIndex = 0
         retryCount = 0
         runCatching { ContextCompat.startForegroundService(appContext, Intent(appContext, RadioPlaybackService::class.java)) }
@@ -111,6 +115,7 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
             return
         }
         safePlay(playlistUrls.first())
+        RadyoNovaWidgetProvider.refresh(appContext)
     }
 
     private fun requestAudioFocus(): Boolean {
@@ -166,7 +171,9 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
             abandonAudioFocus()
             runCatching { appContext.stopService(Intent(appContext, RadioPlaybackService::class.java)) }
             cancelSleepTimer()
+            prefs.setWasPlaying(false)
             statusListener("Durduruldu")
+            RadyoNovaWidgetProvider.refresh(appContext)
         }.onFailure {
             logError("stop ${it.message}")
             statusListener("Hata: durdurulamadı")

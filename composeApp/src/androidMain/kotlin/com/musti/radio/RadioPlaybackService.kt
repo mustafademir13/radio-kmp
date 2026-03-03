@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
+import androidx.media3.common.MediaItem
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaSession
 import androidx.media3.ui.PlayerNotificationManager
@@ -30,10 +31,7 @@ class RadioPlaybackService : Service() {
                 override fun getCurrentContentTitle(player: androidx.media3.common.Player): CharSequence = "RadyoNova"
                 override fun createCurrentContentIntent(player: androidx.media3.common.Player) = null
                 override fun getCurrentContentText(player: androidx.media3.common.Player): CharSequence = "Canlı yayın çalıyor"
-                override fun getCurrentLargeIcon(
-                    player: androidx.media3.common.Player,
-                    callback: PlayerNotificationManager.BitmapCallback
-                ) = null
+                override fun getCurrentLargeIcon(player: androidx.media3.common.Player, callback: PlayerNotificationManager.BitmapCallback) = null
             })
             .setNotificationListener(object : PlayerNotificationManager.NotificationListener {
                 override fun onNotificationPosted(notificationId: Int, notification: Notification, ongoing: Boolean) {
@@ -57,7 +55,25 @@ class RadioPlaybackService : Service() {
         startForeground(NOTIFICATION_ID, bootstrapNotification())
     }
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int = START_STICKY
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        val player = RadioPlayerHolder.get(this)
+        when (intent?.action) {
+            ACTION_PLAY -> {
+                val url = intent.getStringExtra(EXTRA_URL)
+                if (!url.isNullOrBlank()) {
+                    player.setMediaItem(MediaItem.fromUri(url))
+                    player.prepare()
+                    player.playWhenReady = true
+                }
+            }
+            ACTION_STOP -> {
+                player.stop()
+                stopForeground(STOP_FOREGROUND_REMOVE)
+                stopSelf()
+            }
+        }
+        return START_STICKY
+    }
 
     override fun onDestroy() {
         notificationManager?.setPlayer(null)
@@ -72,9 +88,7 @@ class RadioPlaybackService : Service() {
     private fun createChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val nm = getSystemService(NotificationManager::class.java)
-            nm.createNotificationChannel(
-                NotificationChannel(CHANNEL_ID, "Radio Playback", NotificationManager.IMPORTANCE_LOW)
-            )
+            nm.createNotificationChannel(NotificationChannel(CHANNEL_ID, "Radio Playback", NotificationManager.IMPORTANCE_LOW))
         }
     }
 
@@ -90,5 +104,9 @@ class RadioPlaybackService : Service() {
     companion object {
         const val CHANNEL_ID = "radio_playback"
         const val NOTIFICATION_ID = 9911
+        const val ACTION_PLAY = "com.musti.radio.action.PLAY"
+        const val ACTION_STOP = "com.musti.radio.action.STOP"
+        const val EXTRA_URL = "extra_url"
+        const val EXTRA_FALLBACK_CSV = "extra_fallback_csv"
     }
 }
