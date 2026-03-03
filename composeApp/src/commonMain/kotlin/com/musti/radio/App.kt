@@ -26,6 +26,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -347,6 +348,57 @@ fun App(
 
 
 
+
+            // Mini Player
+            Card(
+                colors = CardDefaults.cardColors(containerColor = CardDark2),
+                shape = RoundedCornerShape(16.dp),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFF344061)),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 4.dp, bottom = 6.dp)
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp, vertical = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            selectedStation.name,
+                            color = TextMain,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                        Text(
+                            if (isPlaying) "Çalıyor • ${selectedStation.category}" else "Duraklatıldı",
+                            color = TextMuted,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        IconButton(onClick = {
+                            if (isPlaying) {
+                                player.stop(); isPlaying = false
+                            } else {
+                                player.play(selectedStation.streamUrl, selectedStation.fallbackUrls)
+                                player.setVolume(volume)
+                                isPlaying = true
+                            }
+                        }) {
+                            Text(if (isPlaying) "❚❚" else "▶", color = Color.White)
+                        }
+                        IconButton(onClick = { player.stop(); isPlaying = false }) {
+                            Text("■", color = Color.White)
+                        }
+                    }
+                }
+            }
 
             Row(
                 modifier = Modifier
