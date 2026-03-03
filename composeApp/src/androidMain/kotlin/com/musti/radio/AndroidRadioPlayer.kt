@@ -1,6 +1,7 @@
 package com.musti.radio
 
 import android.content.Context
+import android.content.Intent
 import android.media.AudioAttributes
 import android.media.AudioFocusRequest
 import android.media.AudioManager
@@ -8,6 +9,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import androidx.media3.common.MediaItem
+import androidx.core.content.ContextCompat
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import java.io.File
@@ -26,6 +28,8 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
     private var currentUrlIndex = 0
     private var retryCount = 0
     private val maxRetryPerUrl = 2
+    private var sleepTimerDeadlineMs: Long = 0L
+    private var sleepRunnable: Runnable? = null
 
     private val audioFocusListener = AudioManager.OnAudioFocusChangeListener { change ->
         when (change) {
@@ -101,6 +105,7 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
         playlistUrls = listOf(url) + fallbackUrls.filter { it.isNotBlank() && it != url }
         currentUrlIndex = 0
         retryCount = 0
+        runCatching { ContextCompat.startForegroundService(appContext, Intent(appContext, RadioPlaybackService::class.java)) }
         if (!requestAudioFocus()) {
             statusListener("Ses odağı alınamadı")
             return
@@ -159,6 +164,8 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
                 mainHandler.post { player.stop() }
             }
             abandonAudioFocus()
+            runCatching { appContext.stopService(Intent(appContext, RadioPlaybackService::class.java)) }
+            cancelSleepTimer()
             statusListener("Durduruldu")
         }.onFailure {
             logError("stop ${it.message}")
@@ -197,6 +204,33 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
             if (!file.exists()) return ""
             file.readLines().takeLast(lines).joinToString("\n")
         }.getOrDefault("")
+    }
+
+
+    override fun setSleepTimer(minutes: Int) {
+        val safeMin = minutes.coerceAtLeast(1)
+        cancelSleepTimer()
+        sleepTimerDeadlineMs = System.currentTimeMillis() + safeMin * 60_000L
+        val r = Runnable {
+            stop()
+            statusListener("Uyku zamanlayıcısı: oynatma durduruldu")
+        }
+        sleepRunnable = r
+        mainHandler.postDelayed(r, safeMin * 60_000L)
+        statusListener("Uyku zamanlayıcısı: ${safeMin} dk")
+    }
+
+    override fun cancelSleepTimer() {
+        sleepRunnable?.let { mainHandler.removeCallbacks(it) }
+        sleepRunnable = null
+        sleepTimerDeadlineMs = 0L
+    }
+
+    override fun sleepTimerRemainingMinutes(): Int {
+        if (sleepTimerDeadlineMs <= 0L) return 0
+        val diff = sleepTimerDeadlineMs - System.currentTimeMillis()
+        if (diff <= 0) return 0
+        return ((diff + 59_999L) / 60_000L).toInt()
     }
 
     private fun logError(msg: String) {

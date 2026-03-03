@@ -127,6 +127,7 @@ fun App(
     val categories = listOf("Tümü") + baseList.map { it.category }.filter { it.isNotBlank() }.distinct().take(8)
     val categoryList = if (selectedCategory == "Tümü") baseList else baseList.filter { it.category == selectedCategory }
     val searched = categoryList.filter { it.name.contains(query, ignoreCase = true) }
+    val sleepRemaining = player.sleepTimerRemainingMinutes()
     val filteredStations = when (sortMode) {
         SortMode.Popular -> searched.sortedByDescending { it.bitrateKbps }
         SortMode.Name -> searched.sortedBy { it.name }
@@ -215,6 +216,18 @@ fun App(
                             }) {
                                 Text(if (favorites.contains(selectedStation.id)) "★ Favoride" else "☆ Favoriye ekle")
                             }
+
+                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                                Button(onClick = { player.setSleepTimer(15) }) { Text("15 dk") }
+                                Button(onClick = { player.setSleepTimer(30) }) { Text("30 dk") }
+                                Button(onClick = { player.setSleepTimer(60) }) { Text("60 dk") }
+                                Button(onClick = { player.cancelSleepTimer() }) { Text("İptal") }
+                            }
+                            Text(
+                                if (sleepRemaining > 0) "Uyku zamanlayıcısı: ${sleepRemaining} dk kaldı" else "Uyku zamanlayıcısı kapalı",
+                                color = TextMuted,
+                                style = MaterialTheme.typography.bodySmall
+                            )
 
                             Text("Ses", color = TextMuted)
                             Slider(value = volume, onValueChange = { volume = it; player.setVolume(it) }, valueRange = 0f..1f)

@@ -6,4 +6,7 @@ interface RadioPlayer {
     fun setVolume(volume: Float)
     fun setStatusListener(listener: (String) -> Unit)
     fun diagnosticsSummary(): String
+    fun setSleepTimer(minutes: Int)
+    fun cancelSleepTimer()
+    fun sleepTimerRemainingMinutes(): Int
 }
