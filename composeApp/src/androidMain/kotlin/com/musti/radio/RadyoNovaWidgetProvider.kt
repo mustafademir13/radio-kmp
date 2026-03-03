@@ -10,17 +10,49 @@ import android.widget.RemoteViews
 
 class RadyoNovaWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
+        val prefs = AppPrefs(context)
+        val wasPlaying = prefs.wasPlaying()
+        val title = prefs.getLastStationId() ?: "RadyoNova"
+        val sub = if (wasPlaying) "Çalıyor" else "Durdu"
+
         appWidgetIds.forEach { id ->
             val views = RemoteViews(context.packageName, R.layout.widget_radionova)
+            views.setTextViewText(R.id.widget_title, title)
+            views.setTextViewText(R.id.widget_sub, sub)
+
             val launchIntent = Intent(context, MainActivity::class.java)
-            val pi = PendingIntent.getActivity(
+            val launchPi = PendingIntent.getActivity(
                 context,
-                0,
+                100,
                 launchIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
-            views.setOnClickPendingIntent(R.id.widget_title, pi)
-            views.setOnClickPendingIntent(R.id.widget_sub, pi)
+
+            val toggleIntent = Intent(context, RadioPlaybackService::class.java).apply {
+                action = RadioPlaybackService.ACTION_TOGGLE
+            }
+            val togglePi = PendingIntent.getService(
+                context,
+                101,
+                toggleIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+
+            val stopIntent = Intent(context, RadioPlaybackService::class.java).apply {
+                action = RadioPlaybackService.ACTION_STOP
+            }
+            val stopPi = PendingIntent.getService(
+                context,
+                102,
+                stopIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+
+            views.setOnClickPendingIntent(R.id.widget_title, launchPi)
+            views.setOnClickPendingIntent(R.id.widget_sub, launchPi)
+            views.setOnClickPendingIntent(R.id.widget_btn_toggle, togglePi)
+            views.setOnClickPendingIntent(R.id.widget_btn_stop, stopPi)
+
             appWidgetManager.updateAppWidget(id, views)
         }
     }

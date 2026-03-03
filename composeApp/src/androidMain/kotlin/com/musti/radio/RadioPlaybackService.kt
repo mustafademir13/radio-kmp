@@ -57,6 +57,8 @@ class RadioPlaybackService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val player = RadioPlayerHolder.get(this)
+        val prefs = AppPrefs(this)
+
         when (intent?.action) {
             ACTION_PLAY -> {
                 val url = intent.getStringExtra(EXTRA_URL)
@@ -64,14 +66,34 @@ class RadioPlaybackService : Service() {
                     player.setMediaItem(MediaItem.fromUri(url))
                     player.prepare()
                     player.playWhenReady = true
+                    prefs.setWasPlaying(true)
                 }
             }
+
+            ACTION_TOGGLE -> {
+                if (player.currentMediaItem == null) {
+                    val url = prefs.getLastStreamUrl()
+                    if (!url.isNullOrBlank()) {
+                        player.setMediaItem(MediaItem.fromUri(url))
+                        player.prepare()
+                        player.playWhenReady = true
+                        prefs.setWasPlaying(true)
+                    }
+                } else {
+                    player.playWhenReady = !player.playWhenReady
+                    prefs.setWasPlaying(player.playWhenReady)
+                }
+            }
+
             ACTION_STOP -> {
                 player.stop()
+                prefs.setWasPlaying(false)
                 stopForeground(STOP_FOREGROUND_REMOVE)
                 stopSelf()
             }
         }
+
+        RadyoNovaWidgetProvider.refresh(this)
         return START_STICKY
     }
 
@@ -105,6 +127,7 @@ class RadioPlaybackService : Service() {
         const val CHANNEL_ID = "radio_playback"
         const val NOTIFICATION_ID = 9911
         const val ACTION_PLAY = "com.musti.radio.action.PLAY"
+        const val ACTION_TOGGLE = "com.musti.radio.action.TOGGLE"
         const val ACTION_STOP = "com.musti.radio.action.STOP"
         const val EXTRA_URL = "extra_url"
         const val EXTRA_FALLBACK_CSV = "extra_fallback_csv"
