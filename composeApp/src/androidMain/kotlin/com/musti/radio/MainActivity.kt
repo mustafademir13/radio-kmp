@@ -6,7 +6,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import android.view.WindowManager
-import com.google.android.gms.ads.MobileAds
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -32,7 +31,6 @@ class MainActivity : ComponentActivity() {
                 f.appendText("[$ts] ${e::class.java.simpleName}: ${e.message}\n")
             }
         }
-        MobileAds.initialize(this) {}
         val player = AndroidRadioPlayer(this)
         val prefs = AppPrefs(this)
         val stations = StationLoader.load(this)
