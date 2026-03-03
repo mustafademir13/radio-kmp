@@ -46,6 +46,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
 data class Station(
@@ -61,10 +62,10 @@ data class Station(
 )
 
 enum class BottomTab(val label: String) {
-    Browse("Browse"),
-    Favorites("Favorites"),
-    Recent("Recent"),
-    Stable50("Stable 50"),
+    Browse("Keşfet"),
+    Favorites("Favori"),
+    Recent("Son"),
+    Stable50("Stabil"),
 }
 
 enum class SortMode(val label: String) {
@@ -154,7 +155,7 @@ fun App(
         Column(modifier = Modifier.fillMaxSize().statusBarsPadding()) {
             LazyColumn(
                 modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(10.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 item {
                     Text("RadyoNova", color = TextMain, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 4.dp))
@@ -181,8 +182,8 @@ fun App(
                                     Text(selectedStation.emoji)
                                 }
                                 Column {
-                                    Text(selectedStation.name, color = TextMain, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleLarge)
-                                    Text("${selectedStation.category} • ${selectedStation.region} • ${selectedStation.bitrateKbps} kbps", color = TextMuted)
+                                    Text(selectedStation.name, color = TextMain, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleLarge, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                    Text("${selectedStation.category} • ${selectedStation.region} • ${selectedStation.bitrateKbps} kbps", color = TextMuted, maxLines = 1, overflow = TextOverflow.Ellipsis)
                                     Text("Skor: ${selectedStation.healthScore}/100", color = NeonCyan)
                                     Text("Durum: $status", color = NeonCyan, modifier = Modifier.alpha(pulseAlpha))
                                 }
@@ -244,6 +245,7 @@ fun App(
                         onValueChange = { query = it },
                         modifier = Modifier.fillMaxWidth(),
                         label = { Text("Kanal ara") },
+                        supportingText = { Text("İstasyon adı yaz") },
                         singleLine = true,
                     )
                 }
@@ -316,8 +318,8 @@ fun App(
 
                                 Column {
                                     val star = if (favorites.contains(station.id)) "★ " else ""
-                                    Text("$star${station.name}", color = TextMain, fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal)
-                                    Text("${station.category} • ${station.region}", color = TextMuted)
+                                    Text("$star${station.name}", color = TextMain, fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                    Text("${station.category} • ${station.region}", color = TextMuted, maxLines = 1, overflow = TextOverflow.Ellipsis)
                                     Text("${station.bitrateKbps} kbps • Skor ${station.healthScore}", color = if (selected) NeonCyan else TextMuted)
                                 }
                             }
@@ -346,7 +348,7 @@ fun App(
                     .background(Color(0xFF171E38))
                     .border(1.dp, Color(0xFF303A60), RoundedCornerShape(18.dp))
                     .navigationBarsPadding()
-                    .height(84.dp)
+                    .height(76.dp)
                     .padding(horizontal = 10.dp, vertical = 10.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
@@ -357,7 +359,7 @@ fun App(
                             .clip(RoundedCornerShape(12.dp))
                             .background(if (selectedTab == tab) NeonPurple else Color.Transparent)
                             .clickable { selectedTab = tab }
-                            .padding(vertical = 16.dp),
+                            .padding(vertical = 12.dp),
                         contentAlignment = Alignment.Center,
                     ) {
                         Text(tab.label, color = if (selectedTab == tab) Color.White else TextMuted)
