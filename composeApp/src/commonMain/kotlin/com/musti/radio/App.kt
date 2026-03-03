@@ -63,10 +63,10 @@ data class Station(
 )
 
 enum class BottomTab(val label: String) {
-    Browse("Keşfet"),
+    Browse("Tümü"),
     Favorites("Favori"),
-    Recent("Son"),
-    Stable50("Stabil"),
+    Recent("Geçmiş"),
+    Stable50("Önerilen"),
 }
 
 enum class SortMode(val label: String) {
