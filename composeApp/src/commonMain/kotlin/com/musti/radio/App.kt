@@ -26,6 +26,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -102,6 +104,8 @@ fun App(
     onFavoritesChanged: (Set<String>) -> Unit = {},
     onSetAlarm: (Int) -> Unit = {},
     onCancelAlarm: () -> Unit = {},
+    isPro: Boolean = false,
+    onSetPro: (Boolean) -> Unit = {},
     stations: List<Station> = defaultStations,
 ) {
     var isPlaying by remember { mutableStateOf(false) }
@@ -116,6 +120,7 @@ fun App(
     var selectedTab by remember { mutableStateOf(BottomTab.Browse) }
     var selectedCategory by remember { mutableStateOf("Tümü") }
     var sortMode by remember { mutableStateOf(SortMode.Popular) }
+    var showProDialog by remember { mutableStateOf(false) }
 
     DisposableEffect(player) {
         player.setStatusListener { status = it }
@@ -256,6 +261,12 @@ fun App(
                                 color = TextMuted,
                                 style = MaterialTheme.typography.bodySmall
                             )
+
+                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                                Button(onClick = { showProDialog = true }, modifier = Modifier.weight(1f)) {
+                                    Text(if (isPro) "Pro Açık" else "Reklamsız (Pro)")
+                                }
+                            }
 
                             Text("Ses", color = TextMuted)
                             Slider(value = volume, onValueChange = { volume = it; player.setVolume(it) }, valueRange = 0f..1f)
@@ -438,11 +449,13 @@ fun App(
                 }
             }
 
-            AdBanner(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 4.dp, bottom = 8.dp)
-            )
+            if (!isPro) {
+                AdBanner(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 4.dp, bottom = 8.dp)
+                )
+            }
 
             Row(
                 modifier = Modifier
@@ -470,5 +483,30 @@ fun App(
                 }
             }
         }
+
+        if (showProDialog) {
+            AlertDialog(
+                onDismissRequest = { showProDialog = false },
+                title = { Text("RadyoNova Pro") },
+                text = {
+                    Text(
+                        "Reklamsız kullanım, ileride gelişmiş özellikler ve öncelikli güncellemeler için Pro modu açabilirsin."
+                    )
+                },
+                confirmButton = {
+                    TextButton(onClick = {
+                        onSetPro(true)
+                        showProDialog = false
+                    }) { Text("Pro'yu Aç") }
+                },
+                dismissButton = {
+                    TextButton(onClick = {
+                        onSetPro(false)
+                        showProDialog = false
+                    }) { Text("Şimdilik Değil") }
+                }
+            )
+        }
+
     }
 }
