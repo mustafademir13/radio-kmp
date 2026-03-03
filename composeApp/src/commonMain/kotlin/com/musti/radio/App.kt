@@ -185,7 +185,7 @@ fun App(
                                     Text(selectedStation.emoji)
                                 }
                                 Column {
-                                    Text(selectedStation.name, color = TextMain, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                    Text(selectedStation.name, color = TextMain, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodyLarge, maxLines = 1, overflow = TextOverflow.Ellipsis)
                                     Text("${selectedStation.category} • ${selectedStation.region}", color = TextMuted, maxLines = 1, overflow = TextOverflow.Ellipsis)
                                     Text("Durum: $status", color = NeonCyan, modifier = Modifier.alpha(pulseAlpha), maxLines = 1)
                                 }
@@ -360,7 +360,7 @@ fun App(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 10.dp, vertical = 8.dp),
+                        .padding(horizontal = 10.dp, vertical = 6.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
@@ -392,28 +392,28 @@ fun App(
                                 }
                             },
                             modifier = Modifier
-                                .size(42.dp)
+                                .size(34.dp)
                                 .clip(CircleShape)
                                 .background(Color(0xFF2D3756))
                         ) {
                             Text(
                                 if (isPlaying) "❚❚" else "▶",
                                 color = Color.White,
-                                style = MaterialTheme.typography.titleMedium,
+                                style = MaterialTheme.typography.bodyLarge,
                                 fontWeight = FontWeight.Bold
                             )
                         }
                         IconButton(
                             onClick = { player.stop(); isPlaying = false },
                             modifier = Modifier
-                                .size(42.dp)
+                                .size(34.dp)
                                 .clip(CircleShape)
                                 .background(Color(0xFF2D3756))
                         ) {
                             Text(
                                 "■",
                                 color = Color.White,
-                                style = MaterialTheme.typography.titleMedium,
+                                style = MaterialTheme.typography.bodyLarge,
                                 fontWeight = FontWeight.Bold
                             )
                         }
