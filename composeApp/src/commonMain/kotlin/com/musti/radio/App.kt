@@ -36,6 +36,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -49,6 +50,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
 
 data class Station(
     val id: String,
@@ -138,6 +140,21 @@ fun App(
         SortMode.Bitrate -> searched.sortedByDescending { it.bitrateKbps }
     }
 
+    LaunchedEffect(stations) {
+        while (true) {
+            val playing = player.isPlayingNow()
+            if (isPlaying != playing) isPlaying = playing
+            val current = player.currentUrl()
+            if (!current.isNullOrBlank()) {
+                val matched = stations.firstOrNull { it.streamUrl == current || it.fallbackUrls.contains(current) }
+                if (matched != null && matched.id != selectedStation.id) {
+                    selectedStation = matched
+                }
+            }
+            delay(1000)
+        }
+    }
+
     val transition = rememberInfiniteTransition(label = "pulse")
     val pulseAlpha by transition.animateFloat(
         initialValue = 0.35f,
@@ -185,7 +202,7 @@ fun App(
                                     Text(selectedStation.emoji)
                                 }
                                 Column {
-                                    Text(selectedStation.name, color = TextMain, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodyLarge, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                    Text(selectedStation.name, color = TextMain, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
                                     Text("${selectedStation.category} • ${selectedStation.region}", color = TextMuted, maxLines = 1, overflow = TextOverflow.Ellipsis)
                                     Text("Durum: $status", color = NeonCyan, modifier = Modifier.alpha(pulseAlpha), maxLines = 1)
                                 }
@@ -338,7 +355,7 @@ fun App(
                                     .background(if (selected) NeonPurple else Color(0xFF2D3756))
                                     .padding(horizontal = 14.dp, vertical = 9.dp),
                             ) {
-                                Text(if (selected) "Seçili" else if (station.healthScore < 55) "Zayıf" else "Oynat", color = Color.White, maxLines = 1)
+                                Text(if (selected && isPlaying) "Çalıyor" else if (selected) "Seçili" else if (station.healthScore < 55) "Zayıf" else "Oynat", color = Color.White, maxLines = 1)
                             }
                         }
                     }
@@ -392,28 +409,28 @@ fun App(
                                 }
                             },
                             modifier = Modifier
-                                .size(34.dp)
+                                .size(30.dp)
                                 .clip(CircleShape)
                                 .background(Color(0xFF2D3756))
                         ) {
                             Text(
                                 if (isPlaying) "❚❚" else "▶",
                                 color = Color.White,
-                                style = MaterialTheme.typography.bodyLarge,
+                                style = MaterialTheme.typography.bodyMedium,
                                 fontWeight = FontWeight.Bold
                             )
                         }
                         IconButton(
                             onClick = { player.stop(); isPlaying = false },
                             modifier = Modifier
-                                .size(34.dp)
+                                .size(30.dp)
                                 .clip(CircleShape)
                                 .background(Color(0xFF2D3756))
                         ) {
                             Text(
                                 "■",
                                 color = Color.White,
-                                style = MaterialTheme.typography.bodyLarge,
+                                style = MaterialTheme.typography.bodyMedium,
                                 fontWeight = FontWeight.Bold
                             )
                         }

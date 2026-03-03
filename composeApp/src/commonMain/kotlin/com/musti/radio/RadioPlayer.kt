@@ -9,4 +9,6 @@ interface RadioPlayer {
     fun setSleepTimer(minutes: Int)
     fun cancelSleepTimer()
     fun sleepTimerRemainingMinutes(): Int
+    fun isPlayingNow(): Boolean
+    fun currentUrl(): String?
 }

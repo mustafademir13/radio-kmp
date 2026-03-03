@@ -240,6 +240,13 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
         return ((diff + 59_999L) / 60_000L).toInt()
     }
 
+
+    override fun isPlayingNow(): Boolean = player.isPlaying || player.playWhenReady
+
+    override fun currentUrl(): String? = runCatching {
+        player.currentMediaItem?.localConfiguration?.uri?.toString()
+    }.getOrNull()
+
     private fun logError(msg: String) {
         runCatching {
             val dir = File(appContext.filesDir, "logs")
