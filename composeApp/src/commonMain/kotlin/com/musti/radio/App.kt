@@ -65,6 +65,12 @@ enum class BottomTab(val label: String) {
     Stable50("Stable 50"),
 }
 
+enum class SortMode(val label: String) {
+    Popular("Popüler"),
+    Name("İsim"),
+    Bitrate("Bitrate"),
+}
+
 val defaultStations = listOf(
     Station("bbc_world", "BBC World Service", "🌍", "https://stream.live.vc.bbcmedia.co.uk/bbc_world_service", "News", "UK", 128),
     Station("virgin_uk", "Virgin Radio UK", "🎸", "https://radio.virginradio.co.uk/stream", "Pop", "UK", 128),
@@ -101,6 +107,7 @@ fun App(
     var query by remember { mutableStateOf("") }
     var selectedTab by remember { mutableStateOf(BottomTab.Browse) }
     var selectedCategory by remember { mutableStateOf("Tümü") }
+    var sortMode by remember { mutableStateOf(SortMode.Popular) }
     var diagnostics by remember { mutableStateOf(player.diagnosticsSummary()) }
 
     DisposableEffect(player) {
@@ -117,7 +124,12 @@ fun App(
     }
     val categories = listOf("Tümü") + baseList.map { it.category }.filter { it.isNotBlank() }.distinct().take(8)
     val categoryList = if (selectedCategory == "Tümü") baseList else baseList.filter { it.category == selectedCategory }
-    val filteredStations = categoryList.filter { it.name.contains(query, ignoreCase = true) }
+    val searched = categoryList.filter { it.name.contains(query, ignoreCase = true) }
+    val filteredStations = when (sortMode) {
+        SortMode.Popular -> searched.sortedByDescending { it.bitrateKbps }
+        SortMode.Name -> searched.sortedBy { it.name }
+        SortMode.Bitrate -> searched.sortedByDescending { it.bitrateKbps }
+    }
 
     val transition = rememberInfiniteTransition(label = "pulse")
     val pulseAlpha by transition.animateFloat(
@@ -228,6 +240,20 @@ fun App(
                                     .clickable { selectedCategory = cat }
                                     .padding(horizontal = 10.dp, vertical = 7.dp),
                             ) { Text(cat, color = Color.White, style = MaterialTheme.typography.labelMedium) }
+                        }
+                    }
+                }
+
+                item {
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                        SortMode.entries.forEach { mode ->
+                            Box(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(12.dp))
+                                    .background(if (sortMode == mode) Color(0xFF1FA2B8) else Color(0xFF2D3756))
+                                    .clickable { sortMode = mode }
+                                    .padding(horizontal = 10.dp, vertical = 7.dp),
+                            ) { Text(mode.label, color = Color.White, style = MaterialTheme.typography.labelMedium) }
                         }
                     }
                 }
