@@ -55,6 +55,7 @@ data class Station(
     val category: String = "Genel",
     val region: String = "Türkiye",
     val bitrateKbps: Int = 128,
+    val fallbackUrls: List<String> = emptyList(),
 )
 
 enum class BottomTab(val label: String) {
@@ -176,7 +177,7 @@ fun App(
                                             if (isPlaying) {
                                                 player.stop(); isPlaying = false
                                             } else {
-                                                player.play(selectedStation.streamUrl); player.setVolume(volume); isPlaying = true
+                                                player.play(selectedStation.streamUrl, selectedStation.fallbackUrls); player.setVolume(volume); isPlaying = true
                                                 recent.remove(selectedStation.id)
                                                 recent.add(0, selectedStation.id)
                                                 if (recent.size > 10) recent.removeLast()
@@ -232,7 +233,7 @@ fun App(
                                 recent.remove(station.id)
                                 recent.add(0, station.id)
                                 if (recent.size > 10) recent.removeLast()
-                                player.play(station.streamUrl)
+                                player.play(station.streamUrl, station.fallbackUrls)
                                 player.setVolume(volume)
                                 isPlaying = true
                             },

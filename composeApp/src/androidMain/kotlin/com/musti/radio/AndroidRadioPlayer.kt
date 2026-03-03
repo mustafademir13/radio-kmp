@@ -6,6 +6,10 @@ import android.os.Looper
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class AndroidRadioPlayer(context: Context) : RadioPlayer {
     private val appContext = context.applicationContext
@@ -13,9 +17,10 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
     private val mainHandler = Handler(Looper.getMainLooper())
 
     private var statusListener: (String) -> Unit = {}
-    private var lastUrl: String? = null
+    private var playlistUrls: List<String> = emptyList()
+    private var currentUrlIndex = 0
     private var retryCount = 0
-    private val maxRetry = 2
+    private val maxRetryPerUrl = 2
 
     init {
         player.addListener(object : Player.Listener {
@@ -32,11 +37,21 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
             }
 
             override fun onPlayerError(error: PlaybackException) {
-                val url = lastUrl
-                if (retryCount < maxRetry && !url.isNullOrBlank()) {
+                logError("playerError code=${error.errorCodeName} msg=${error.message}")
+                val current = playlistUrls.getOrNull(currentUrlIndex)
+                if (current != null && retryCount < maxRetryPerUrl) {
                     retryCount++
                     statusListener("Bağlantı hatası, tekrar deneniyor…")
-                    mainHandler.postDelayed({ safePlay(url) }, 1200L)
+                    mainHandler.postDelayed({ safePlay(current) }, 1200L)
+                    return
+                }
+
+                val nextIndex = currentUrlIndex + 1
+                if (nextIndex < playlistUrls.size) {
+                    currentUrlIndex = nextIndex
+                    retryCount = 0
+                    statusListener("Yedek yayına geçiliyor…")
+                    safePlay(playlistUrls[currentUrlIndex])
                 } else {
                     statusListener("Hata: yayın açılamadı")
                 }
@@ -44,9 +59,11 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
         })
     }
 
-    override fun play(url: String) {
-        lastUrl = url
-        safePlay(url)
+    override fun play(url: String, fallbackUrls: List<String>) {
+        playlistUrls = listOf(url) + fallbackUrls.filter { it.isNotBlank() && it != url }
+        currentUrlIndex = 0
+        retryCount = 0
+        safePlay(playlistUrls.first())
     }
 
     private fun safePlay(url: String) {
@@ -61,11 +78,15 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
                         player.setMediaItem(MediaItem.fromUri(url))
                         player.prepare()
                         player.playWhenReady = true
-                    }.onFailure { statusListener("Hata: oynatma başlatılamadı") }
+                    }.onFailure {
+                        logError("safePlay(mainPost) ${it.message}")
+                        statusListener("Hata: oynatma başlatılamadı")
+                    }
                 }
             }
             statusListener("Bağlanıyor…")
         }.onFailure {
+            logError("safePlay ${it.message}")
             statusListener("Hata: oynatma başlatılamadı")
         }
     }
@@ -79,6 +100,7 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
             }
             statusListener("Durduruldu")
         }.onFailure {
+            logError("stop ${it.message}")
             statusListener("Hata: durdurulamadı")
         }
     }
@@ -91,10 +113,20 @@ class AndroidRadioPlayer(context: Context) : RadioPlayer {
             } else {
                 mainHandler.post { player.volume = v }
             }
-        }
+        }.onFailure { logError("setVolume ${it.message}") }
     }
 
     override fun setStatusListener(listener: (String) -> Unit) {
         statusListener = listener
+    }
+
+    private fun logError(msg: String) {
+        runCatching {
+            val dir = File(appContext.filesDir, "logs")
+            if (!dir.exists()) dir.mkdirs()
+            val file = File(dir, "radionova-player.log")
+            val ts = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date())
+            file.appendText("[$ts] $msg\n")
+        }
     }
 }

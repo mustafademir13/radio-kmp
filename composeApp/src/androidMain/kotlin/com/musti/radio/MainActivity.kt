@@ -7,6 +7,10 @@ import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import android.view.WindowManager
 import com.google.android.gms.ads.MobileAds
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +22,15 @@ class MainActivity : ComponentActivity() {
             val lp = window.attributes
             lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
             window.attributes = lp
+        }
+        Thread.setDefaultUncaughtExceptionHandler { _, e ->
+            runCatching {
+                val dir = File(filesDir, "logs")
+                if (!dir.exists()) dir.mkdirs()
+                val f = File(dir, "radionova-crash.log")
+                val ts = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date())
+                f.appendText("[$ts] ${e::class.java.simpleName}: ${e.message}\n")
+            }
         }
         MobileAds.initialize(this) {}
         val player = AndroidRadioPlayer(this)
