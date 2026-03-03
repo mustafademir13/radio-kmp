@@ -218,11 +218,14 @@ fun App(
                             }
 
                             Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
-                                Button(onClick = { player.setSleepTimer(15) }) { Text("15 dk") }
-                                Button(onClick = { player.setSleepTimer(30) }) { Text("30 dk") }
-                                Button(onClick = { player.setSleepTimer(60) }) { Text("60 dk") }
-                                Button(onClick = { player.cancelSleepTimer() }) { Text("İptal") }
+                                Button(onClick = { player.setSleepTimer(15) }, modifier = Modifier.weight(1f)) { Text("15 dk") }
+                                Button(onClick = { player.setSleepTimer(30) }, modifier = Modifier.weight(1f)) { Text("30 dk") }
+                                Button(onClick = { player.setSleepTimer(60) }, modifier = Modifier.weight(1f)) { Text("60 dk") }
                             }
+                            Button(
+                                onClick = { player.cancelSleepTimer() },
+                                modifier = Modifier.fillMaxWidth()
+                            ) { Text("Uyku zamanlayıcısını iptal et") }
                             Text(
                                 if (sleepRemaining > 0) "Uyku zamanlayıcısı: ${sleepRemaining} dk kaldı" else "Uyku zamanlayıcısı kapalı",
                                 color = TextMuted,
