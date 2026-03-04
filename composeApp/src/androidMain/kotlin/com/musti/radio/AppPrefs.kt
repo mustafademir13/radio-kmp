@@ -34,4 +34,7 @@ class AppPrefs(context: Context) {
 
     fun setProEnabled(value: Boolean) = prefs.edit().putBoolean("pro_enabled", value).apply()
     fun isProEnabled(): Boolean = prefs.getBoolean("pro_enabled", false)
+
+    fun setThemeMode(value: String) = prefs.edit().putString("theme_mode", value).apply()
+    fun getThemeMode(): String = prefs.getString("theme_mode", "system") ?: "system"
 }

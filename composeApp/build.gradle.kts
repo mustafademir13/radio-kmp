@@ -40,8 +40,8 @@ android {
         applicationId = "com.musti.radio"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0.2-pro"
+        versionCode = 16
+        versionName = "1.4.0-radionova-theme-system"
 
     }
 
